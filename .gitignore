@@ -5,4 +5,4 @@
 
 /addon/.web-extension-id
 /addon/resources/dist
-/addon/manifest.json
+.idea/*
