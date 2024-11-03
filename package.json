@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A minimal example of how to use npm modules from within a WebExtension.",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --config prod.webpack.config.js",
     "lint": "cd addon && web-ext lint",
-    "dev": "webpack && cd addon && web-ext run --start-url https://mozilla.org"
+    "dev": "webpack --config prod.webpack.config.js && cd addon && web-ext run --start-url https://mozilla.org --browser-console"
   },
   "license": "MPL-2.0",
   "devDependencies": {

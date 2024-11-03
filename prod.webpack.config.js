@@ -9,9 +9,10 @@ module.exports = {
         path: path.resolve(__dirname, "addon"),
         filename: "[name]/bundle.js"
     },
+    devtool: "source-map",
     mode: 'production',
     optimization: {
-        minimize: true,
+        minimize: false,
         minimizer: [new TerserPlugin()],
     },
 };
