@@ -2,23 +2,30 @@
     "manifest_version": 3,
     "name": "TapToQR",
     "version": "0.1.0",
-    "description": "Generates QR codes based on selected content",
+    "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
     "author": "Moritz Reis",
     "icons": {
-        "32": "icons/leftpad-32.png"
+        "128": "img/ic_TapToQR_128.png",
+        "64": "img/ic_TapToQR_64.png",
+        "48": "img/ic_TapToQR_48.png",
+        "32": "img/ic_TapToQR_32.png",
+        "16": "img/ic_TapToQR_16.png"
     },
     "permissions": [
         "activeTab",
         "storage"
     ],
     
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';"
+    },
+    
     "action": {
-        "default_icon": "icons/leftpad-32.png",
-        "default_title": "Left Pad",
-        "default_popup": "popup/left-pad.html"
+        "default_popup": "popup/tap-to-qr.html",
+        "default_area": "navbar"
     },
     "options_ui": {
-        "page": "options/options.html",
+        "page": "settings/settings.html",
         "open_in_tab": true
     }
 }

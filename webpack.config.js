@@ -1,12 +1,17 @@
 const path = require("path");
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
     entry: {
-        popup: "./popup/left-pad.js"
+        popup: "./popup/generateQrCode.js"
     },
     output: {
         path: path.resolve(__dirname, "addon"),
-        filename: "[name]/index.js"
+        filename: "[name]/bundle.js"
     },
-    mode: 'none',
+    mode: 'production',
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+    },
 };
