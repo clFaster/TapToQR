@@ -1,0 +1,64 @@
+:root {
+    --main-font-family: "Source Sans Pro";
+    --bg-color: #131515;
+    --fg-color: #FFFAFB;
+    --grey-bg-color: #2B2C28;
+    --primary-color: #339989;
+    --secondary-color: #7DE2D1;
+}
+
+body {
+    font-family: var(--main-font-family), sans-serif;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+}
+
+h1 {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: var(--grey-bg-color);
+}
+
+.button-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.button {
+    border: none;
+    padding: 10px 25px;
+    border-radius: 28px;
+    color: var(--fg-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.button svg {
+    fill: var(--fg-color);
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}

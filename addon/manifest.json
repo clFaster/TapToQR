@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "TapToQR",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
     "author": "Moritz Reis",
     "icons": {
@@ -14,6 +14,13 @@
     "permissions": [
         "activeTab",
         "storage"
+    ],
+
+    "web_accessible_resources": [
+        {
+            "resources": ["img/ic_TapToQR.svg"],
+            "matches": ["<all_urls>"]
+        }
     ],
     
     "content_security_policy": {

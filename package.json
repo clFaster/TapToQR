@@ -1,17 +1,19 @@
 {
-  "name": "webpack-webextension",
+  "name": "tap-to-qr",
   "version": "1.0.0",
-  "description": "A minimal example of how to use npm modules from within a WebExtension.",
+  "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
   "scripts": {
     "build": "webpack --config prod.webpack.config.js",
     "lint": "cd addon && web-ext lint",
     "dev": "webpack --config prod.webpack.config.js && cd addon && web-ext run --start-url https://mozilla.org --browser-console"
   },
-  "license": "MPL-2.0",
+  "license": "GPL-3.0",
   "devDependencies": {
+    "license-compatibility-checker": "^0.3.5",
     "terser-webpack-plugin": "^5.3.10",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "web-ext": "^8.3.0",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "jimp": "^1.6.0",

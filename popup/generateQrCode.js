@@ -1,61 +1,62 @@
 const QRCode = require("qrcode");
 
-const DEFAULT_QR_SIZE = 150;
-
-async function generateQRCodeWithIcon(url, iconSvg = null, qrCodeSize = DEFAULT_QR_SIZE) {
-    try {
-        const qrCodeSvg = await QRCode.toString(url, {
-            width: qrCodeSize,
-            margin: 2,
-            errorCorrectionLevel: 'H',
-        });
-
-        // If iconSvg is not null, add the icon to the QR code
-        if (iconSvg) {
-            return combineSVG(qrCodeSvg, iconSvg, qrCodeSize);
-        }
-
-        return qrCodeSvg;
-    } catch (error) {
-        console.error('Error generating QR code:', error);
-        throw error; // Ensure the error is thrown to be caught in the calling function
-    }
-}
-
-function combineSVG(qrCodeSvg, iconSvg, qrCodeSize) {
+/**
+ * Adds an icon SVG to a QR code SVG and returns the combined SVG as a string.
+ *
+ * @param {string} qrCodeSvg - The SVG representation of the QR code.
+ * @param {string} iconSvg - The SVG representation of the icon to overlay.
+ * @param {number} qrCodeSize - The size of the QR code in pixels.
+ * @returns {string} The combined SVG as a string.
+ */
+function addIconToQrCodeSvg(qrCodeSvg, iconSvg, qrCodeSize) {
     const iconSize = qrCodeSize * 0.25;
-    const margin = iconSize * 0.21; // Adjust the margin size as needed
-    const cornerRadius = margin / 2; // Radius for rounded corners
+    const rectMargin = iconSize * 0.10;
+    const scaledIconSize = iconSize / 150; // Reduced the scale factor directly in calculation
+    const rectCornerRadius = rectMargin / 2;
+    const position = qrCodeSize / 2 - iconSize / 2; // Shared position calculation for rectangle and icon
 
     return `
         <svg width="${qrCodeSize}" height="${qrCodeSize}" xmlns="http://www.w3.org/2000/svg">
             <g>${qrCodeSvg}</g>
-            
-            <g transform="translate(${(qrCodeSize - iconSize) / 2}, ${(qrCodeSize - iconSize) / 2})">
+            <g>
                 <rect 
-                    x="${-margin / 2}" 
-                    y="${-margin / 2}" 
-                    width="${iconSize + margin}" 
-                    height="${iconSize + margin}" 
+                    x="${position - rectMargin}" 
+                    y="${position - rectMargin}" 
+                    width="${iconSize + rectMargin * 2}" 
+                    height="${iconSize + rectMargin * 2}" 
                     fill="white" 
-                    rx="${cornerRadius}" 
-                    ry="${cornerRadius}"
+                    rx="${rectCornerRadius}" 
+                    ry="${rectCornerRadius}"
                 />
-                <g transform="scale(${iconSize / qrCodeSize})">
-                    ${iconSvg}
-                </g>
+            </g>
+            <g transform="translate(${position} ${position}) scale(${scaledIconSize})">
+                ${iconSvg}
             </g>
         </svg>
     `;
 }
 
-async function setQRCodeWithIcon(url, iconPath = null, qrCodeSize = DEFAULT_QR_SIZE) {
+window.addIconToQrCodeSvg = addIconToQrCodeSvg;
+
+/**
+ * Generates a QR code in SVG format.
+ *
+ * @param {string} url - The URL to encode in the QR code.
+ * @param {number} qrCodeSize - The size of the QR code in pixels.
+ * @returns {Promise<string>} A promise that resolves to the SVG string of the generated QR code.
+ * @throws {Error} If there is an error generating the QR code.
+ */
+async function getQrCodeSvg(url, qrCodeSize) {
     try {
-        return await generateQRCodeWithIcon(url, iconPath, qrCodeSize);
+        return await QRCode.toString(url, {
+            width: qrCodeSize,
+            margin: 2,
+            errorCorrectionLevel: 'H',
+        });
     } catch (error) {
         console.error("Error generating QR code:", error);
         throw error;
     }
 }
 
-window.setQRCodeWithIcon = setQRCodeWithIcon;
+window.getQrCodeSvg = getQrCodeSvg;
