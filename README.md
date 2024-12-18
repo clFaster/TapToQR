@@ -6,13 +6,13 @@
 
 <p align="center">
   <a href="https://addons.mozilla.org/addon/taptoqr/">
-    <img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get TapToQR for Firefox" width="200" height="70">
+    <img src="https://user-images.githubusercontent.com/585534/107280546-7b9b2a00-6a26-11eb-8f9f-f95932f4bfec.png" alt="Get TapToQR for Firefox" height="70">
   </a>
   <a href="https://chromewebstore.google.com/detail/taptoqr/ommdikomjapdndpedljobeecepeopjmp">
-    <img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get TapToQR for Chrome" width="220" height="70">
+    <img src="https://user-images.githubusercontent.com/585534/107280622-91a8ea80-6a26-11eb-8d07-77c548b28665.png" alt="Get TapToQR for Chrome" height="70">
   </a>
   <a href="https://microsoftedge.microsoft.com/addons/detail/taptoqr/bkfofjhemmkeekmaimpgbndkddmknbga">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" alt="Get TapToQR for Edge" width="200" height="70">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" alt="Get TapToQR for Edge" height="70">
   </a>
 </p>
 
