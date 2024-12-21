@@ -158,6 +158,13 @@ jobs:
         build,
         update-version
       ]
+
+    env:
+      EXTENSION_ID: "ommdikomjapdndpedljobeecepeopjmp"
+      CLIENT_ID: ${{ secrets.CI_GOOGLE_CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CI_GOOGLE_CLIENT_SECRET }}
+      REFRESH_TOKEN: ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -173,13 +180,7 @@ jobs:
         run: |-
           cd TapToQR-addon
           
-          # unzip the artifact
           unzip TapToQR-${{needs.update-version.outputs.new_version}}.zip
-          ls -R
+          rm TapToQR-${{needs.update-version.outputs.new_version}}.zip
           
-          chrome-webstore-upload \\
-            --source TapToQR-${{needs.update-version.outputs.new_version}}.zip \\
-            --extension-id "ommdikomjapdndpedljobeecepeopjmp" \\
-            --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
-            --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
-            --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+          chrome-webstore-upload
