@@ -127,7 +127,6 @@ jobs:
   release-firefox:
     runs-on: ubuntu-latest
     name: "Create TapToQR Firefox Release"
-    permissions: write-all
     needs:
       [
         build,
@@ -152,7 +151,6 @@ jobs:
   release-chrome:
     runs-on: ubuntu-latest
     name: "Create TapToQR Chrome Release"
-    permissions: write-all
     needs:
       [
         build,
@@ -176,11 +174,26 @@ jobs:
         run: |
           npm install -g chrome-webstore-upload-cli
 
-      - name: "Upload to Chrome Webstore"
-        run: |-
-          cd TapToQR-addon
-          
-          unzip TapToQR-${{needs.update-version.outputs.new_version}}.zip
-          rm TapToQR-${{needs.update-version.outputs.new_version}}.zip
-          
-          chrome-webstore-upload
+#      - name: "Upload to Chrome Webstore"
+#        run: |-
+#          cd TapToQR-addon
+#
+#          unzip TapToQR-${{needs.update-version.outputs.new_version}}.zip
+#          rm TapToQR-${{needs.update-version.outputs.new_version}}.zip
+#
+#          chrome-webstore-upload
+
+  release-edge:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Edge Release"
+    needs:
+      [
+        build,
+        update-version
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
