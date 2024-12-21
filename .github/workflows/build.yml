@@ -22,9 +22,6 @@ on:
     branches:
       - main
 
-env:
-  VERSION: "0.0.0"
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && 'pull_request' || 'push' }}-${{ github.event.pull_request.number || github.ref_name }}
   cancel-in-progress: true
@@ -46,18 +43,16 @@ jobs:
 
       - name: Determine VERSION
         id: determine-version
-        run: |
-          echo ${{env.VERSION}}
-          
+        run: |         
           if [ -z "${{ inputs.VERSION }}" ]; then
               echo "Using repository version"
-              echo "VERSION=${{ vars.VERSION }}" >> $GITHUB_ENV
+              echo ${{ vars.VERSION }}
+              echo "VERSION=${{ vars.VERSION }}" >> $GITHUB_OUTPUT
           else
               echo "Using input version"
-              echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_ENV
+              echo ${{ inputs.VERSION }}
+              echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_OUTPUT
           fi
-          
-          echo ${{env.VERSION}}
 
       - name: Install dependencies
         run: npm install
@@ -71,10 +66,10 @@ jobs:
       - name: Create Artifact
         run: |
           cd addon
-          zip -r ../TapToQR-${{env.VERSION}}.zip ./*
+          zip -r ../TapToQR-${{steps.determine-version.outputs.VERSION}}.zip ./*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: 'TapToQR-${{env.VERSION}}.zip'
+          path: 'TapToQR-${{steps.determine-version.outputs.VERSION}}.zip'
           name: 'TapToQR-addon'
