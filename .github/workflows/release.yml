@@ -85,6 +85,6 @@ jobs:
       - name: Update version var
         id: write_version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VAR_UPDATE_GITHUB }}
         run: |
           gh variable set VERSION --body "${{ steps.bump_version.outputs.new_version }}"
