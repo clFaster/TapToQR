@@ -140,10 +140,40 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
 
-      - uses: wdzeng/firefox-addon@1c933bcfc899dad45719bc23ec8c607d51bf8c06
-        with:
-          addon-guid: "taptoqr@moritzreis.dev"
-          xpi-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
-          self-hosted: false
-          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
-          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
+#      - uses: wdzeng/firefox-addon@1c933bcfc899dad45719bc23ec8c607d51bf8c06
+#        name: "Upload to Firefox Addon Store"
+#        with:
+#          addon-guid: "taptoqr@moritzreis.dev"
+#          xpi-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
+#          self-hosted: false
+#          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+#          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
+
+  release-chrome:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Chrome Release"
+    permissions: write-all
+    needs:
+      [
+        build,
+        update-version
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - name: "Setup Google Webstore CLI"
+        run: |
+          npm install -g chrome-webstore-upload-cli
+
+      - name: "Upload to Chrome Webstore"
+        run: |-
+          chrome-webstore-upload \\
+            --source "TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip" \\
+            --extension-id "ommdikomjapdndpedljobeecepeopjmp" \\
+            --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
+            --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
+            --refresh-token ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
