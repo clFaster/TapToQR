@@ -5,13 +5,15 @@ on:
     inputs:
       VERSION:
         description: "The version of the addon to build"
+        type: string
         required: false
 
   workflow_call:
     inputs:
       VERSION:
-        required: false
         description: "The version of the addon to build"
+        type: string
+        required: false
   push:
     branches:
       - main
