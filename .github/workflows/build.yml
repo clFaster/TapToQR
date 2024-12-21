@@ -54,6 +54,12 @@ jobs:
               echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_OUTPUT
           fi
 
+      - name: Update Version
+        run: |
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' package.json > temp.json && mv temp.json package.json
+          cd addon
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' manifest.json > temp.json && mv temp.json manifest.json
+
       - name: Install dependencies
         run: npm install
 
