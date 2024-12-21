@@ -20,6 +20,7 @@ concurrency:
 jobs:
   # Get the Current Version and Bump it depending on the release-type input
   update-version:
+    name: "Update TapToQR Version"
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
@@ -100,6 +101,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    name: "Create TapToQR Release"
     permissions: write-all
     needs:
       [
@@ -113,7 +115,6 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Create Release
-        working-directory: './StatusSwift'
         env:
           GH_TOKEN: ${{github.token}}
         run: |
