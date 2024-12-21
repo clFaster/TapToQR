@@ -99,9 +99,9 @@ jobs:
         update-version
       ]
 
-  release:
+  release-github:
     runs-on: ubuntu-latest
-    name: "Create TapToQR Release"
+    name: "Create TapToQR Github Release"
     permissions: write-all
     needs:
       [
@@ -140,7 +140,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
 
-      - uses: wdzeng/firefox-addon@a6c520c
+      - uses: wdzeng/firefox-addon@a6c520c479eb79861995faf3fa3e271c1b277820
         with:
           addon-guid: "taptoqr@moritzreis.dev"
           xpi-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
