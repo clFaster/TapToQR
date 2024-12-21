@@ -1,0 +1,81 @@
+name: "Build TapToQR Artifact"
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION:
+        description: "The version of the addon to build"
+        type: string
+        required: false
+
+  workflow_call:
+    inputs:
+      VERSION:
+        description: "The version of the addon to build"
+        type: string
+        required: false
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && 'pull_request' || 'push' }}-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-artifact:
+    name: "Build TapToQR Artifact"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Determine VERSION
+        id: determine-version
+        run: |         
+          if [ -z "${{ inputs.VERSION }}" ]; then
+              echo "Using repository version"
+              echo ${{ vars.VERSION }}
+              echo "VERSION=${{ vars.VERSION }}" >> $GITHUB_OUTPUT
+          else
+              echo "Using input version"
+              echo ${{ inputs.VERSION }}
+              echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Update Version
+        run: |
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' package.json > temp.json && mv temp.json package.json
+          cd addon
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' manifest.json > temp.json && mv temp.json manifest.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Webpack project
+        run: npm run webpack-prod
+
+      - name: Create Artifact
+        run: |
+          cd addon
+          zip -r ../TapToQR-${{steps.determine-version.outputs.VERSION}}.zip ./*
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: 'TapToQR-${{steps.determine-version.outputs.VERSION}}.zip'
+          name: 'TapToQR-addon'
