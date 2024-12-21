@@ -172,6 +172,11 @@ jobs:
       - name: "Upload to Chrome Webstore"
         run: |-
           cd TapToQR-addon
+          
+          # unzip the artifact
+          unzip TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          ls -R
+          
           chrome-webstore-upload \\
             --source TapToQR-${{needs.update-version.outputs.new_version}}.zip \\
             --extension-id "ommdikomjapdndpedljobeecepeopjmp" \\
