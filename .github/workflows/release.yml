@@ -121,5 +121,6 @@ jobs:
           GH_TOKEN: ${{github.token}}
         run: |
           echo "Creating release v${{needs.update-version.outputs.new_version}}"
+          ls
           gh release create v${{needs.update-version.outputs.new_version}} --generate-notes
           gh release upload v${{needs.update-version.outputs.new_version}} .\TapToQR-${{needs.update-version.outputs.new_version}}.zip
