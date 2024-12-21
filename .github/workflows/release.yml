@@ -88,3 +88,38 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.VAR_UPDATE_GITHUB }}
         run: |
           gh variable set VERSION --body "${{ steps.bump_version.outputs.new_version }}"
+
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      VERSION: ${{ needs.update-version.outputs.new_version }}
+    needs:
+      [
+        update-version
+      ]
+
+  release:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs:
+      [
+        build
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        working-directory: './StatusSwift'
+        env:
+          GH_TOKEN: ${{github.token}}
+        run: |
+          ls -R
+          
+          # gh release create v${{needs.update-version.outputs.new_version}} --generate-notes
+          
+          # Compress-Archive -Path .\AppPackages -DestinationPath .\AppPackages.zip
+          # gh release upload v${{needs.update-version.outputs.new_version}} .\AppPackages.zip
