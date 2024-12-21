@@ -21,7 +21,7 @@ on:
       - main
 
 env:
-  VERSION: "${{inputs.VERSION || var.VERSION}}"
+  VERSION: "0.0.0"
 
 jobs:
   build-artifact:
@@ -37,6 +37,13 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+
+      - name: Determine VERSION
+        id: determine-version
+        run: |
+          echo ${{env.VERSION}}
+          echo "VERSION=${{ github.event.inputs.VERSION || 'default-version' }}" >> $GITHUB_ENV
+          echo ${{env.VERSION}}
 
       - name: Install dependencies
         run: npm install
