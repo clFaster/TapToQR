@@ -115,11 +115,35 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
 
-      - name: Create Release
-        working-directory: './TapToQR-addon'
-        env:
-          GH_TOKEN: ${{github.token}}
-        run: |
-          echo "Creating release v${{needs.update-version.outputs.new_version}}"
-          gh release create v${{needs.update-version.outputs.new_version}} --generate-notes
-          gh release upload v${{needs.update-version.outputs.new_version}} TapToQR-${{needs.update-version.outputs.new_version}}.zip
+#      - name: Create Release
+#        working-directory: './TapToQR-addon'
+#        env:
+#          GH_TOKEN: ${{github.token}}
+#        run: |
+#          echo "Creating release v${{needs.update-version.outputs.new_version}}"
+#          gh release create v${{needs.update-version.outputs.new_version}} --generate-notes
+#          gh release upload v${{needs.update-version.outputs.new_version}} TapToQR-${{needs.update-version.outputs.new_version}}.zip
+
+  release-firefox:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Firefox Release"
+    permissions: write-all
+    needs:
+      [
+        build,
+        update-version
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - uses: wdzeng/firefox-addon@a6c520c
+        with:
+          addon-guid: "taptoqr@moritzreis.dev"
+          xpi-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          self-hosted: false
+          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
