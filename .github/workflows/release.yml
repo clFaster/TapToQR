@@ -25,6 +25,9 @@ jobs:
     outputs:
       new_version: ${{ steps.bump_version.outputs.new_version }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Ensure branch is main
         if: github.ref != 'refs/heads/main'
         run: |
