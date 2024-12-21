@@ -39,7 +39,8 @@ jobs:
 
       - name: Create Artifact
         run: |
-          zip -r TapToQR.zip addon
+          cd addon
+          zip -r ../TapToQR.zip ./*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
