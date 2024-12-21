@@ -171,8 +171,9 @@ jobs:
 
       - name: "Upload to Chrome Webstore"
         run: |-
+          cd TapToQR-addon
           chrome-webstore-upload \\
-            --source "TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip" \\
+            --source TapToQR-${{needs.update-version.outputs.new_version}}.zip \\
             --extension-id "ommdikomjapdndpedljobeecepeopjmp" \\
             --client-id ${{ secrets.CI_GOOGLE_CLIENT_ID }} \\
             --client-secret ${{ secrets.CI_GOOGLE_CLIENT_SECRET }} \\
