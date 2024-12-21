@@ -1,0 +1,48 @@
+name: "Build TapToQR Artifact"
+
+on:
+  workflow_dispatch:
+
+  workflow_call:
+
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-artifact:
+    name: "Build TapToQR Artifact"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Webpack project
+        run: npm run webpack-prod
+
+      - name: Create Artifact
+        run: |
+          zip -r TapToQR.zip addon
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: 'TapToQR.zip'
+          name: 'TapToQR-addon'

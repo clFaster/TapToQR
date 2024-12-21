@@ -22,11 +22,11 @@
             "matches": ["<all_urls>"]
         }
     ],
-    
+
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self';"
     },
-    
+
     "action": {
         "default_popup": "popup/tap-to-qr.html",
         "default_area": "navbar"
@@ -40,5 +40,4 @@
             "id": "taptoqr@moritzreis.dev"
         }
     }
-
 }

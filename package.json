@@ -4,6 +4,7 @@
   "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
   "scripts": {
     "build": "webpack --config prod.webpack.config.js",
+    "webpack-prod": "webpack --config prod.webpack.config.js",
     "lint": "cd addon && web-ext lint",
     "dev": "webpack --config prod.webpack.config.js && cd addon && web-ext run --start-url https://mozilla.org --browser-console"
   },
