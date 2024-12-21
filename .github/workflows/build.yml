@@ -25,6 +25,10 @@ on:
 env:
   VERSION: "0.0.0"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && 'pull_request' || 'push' }}-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   build-artifact:
     name: "Build TapToQR Artifact"
@@ -44,7 +48,15 @@ jobs:
         id: determine-version
         run: |
           echo ${{env.VERSION}}
-          echo "VERSION=${{ github.event.inputs.VERSION || 'default-version' }}" >> $GITHUB_ENV
+          
+          if [ -z "${{ inputs.VERSION }}" ]; then
+              echo "Using repository version"
+              echo "VERSION=${{ vars.VERSION }}" >> $GITHUB_ENV
+          else
+              echo "Using input version"
+              echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_ENV
+          fi
+          
           echo ${{env.VERSION}}
 
       - name: Install dependencies
