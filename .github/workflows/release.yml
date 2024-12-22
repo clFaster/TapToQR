@@ -197,3 +197,10 @@ jobs:
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
+
+      - uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9
+        with:
+          product-id: "1cc708c2-05e8-4339-9fdb-ddca04acf678"
+          zip-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          api-key: ${{ secrets.MICROSOFT_API_KEY }}
+          client-id: ${{ secrets.MICROSOFT_CLIENT_ID }}
