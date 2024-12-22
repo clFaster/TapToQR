@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       skip-update:
+        type: boolean
         description: "Skip the version update step"
         required: false
         default: false
