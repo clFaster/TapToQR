@@ -3,6 +3,11 @@ name: "Release TapToQR"
 on:
   workflow_dispatch:
     inputs:
+      skip-update:
+        type: boolean
+        description: "Skip the version update step"
+        required: true
+        default: false
       release-type:
         type: choice
         description: Which type of release to create?
@@ -12,6 +17,26 @@ on:
           - patch
           - minor
           - major
+      publish-firefox:
+        type: boolean
+        description: Should the Firefox Addon be published?
+        required: true
+        default: true
+      publish-chrome:
+        type: boolean
+        description: Should the Chrome Extension be published?
+        required: true
+        default: true
+      publish-edge:
+        type: boolean
+        description: Should the Edge Extension be published?
+        required: true
+        default: true
+      publish-github:
+        type: boolean
+        description: Should the Github Release be published?
+        required: true
+        default: true
 
 concurrency:
   group: ${{ github.workflow }}
@@ -20,11 +45,15 @@ concurrency:
 jobs:
   # Get the Current Version and Bump it depending on the release-type input
   update-version:
+    name: "Update TapToQR Version"
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
       new_version: ${{ steps.bump_version.outputs.new_version }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Ensure branch is main
         if: github.ref != 'refs/heads/main'
         run: |
@@ -38,6 +67,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
+        if: ${{ github.event.inputs.skip-update == 'false' }}
         run: |
           # Retrieve the increment type from the GitHub Actions input
           increment="${{ inputs.release-type }}"
@@ -81,7 +111,133 @@ jobs:
 
       - name: Update version var
         id: write_version
+        if: ${{ github.event.inputs.skip-update == 'false' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VAR_UPDATE_GITHUB }}
         run: |
           gh variable set VERSION --body "${{ steps.bump_version.outputs.new_version }}"
+
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      VERSION: ${{ needs.update-version.outputs.new_version }}
+    needs:
+      [
+        update-version
+      ]
+
+  release-github:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Github Release"
+    if: ${{ github.event.inputs.publish-github == 'true' }}
+    permissions: write-all
+    needs:
+      [
+        build
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        working-directory: './TapToQR-addon'
+        env:
+          GH_TOKEN: ${{github.token}}
+        run: |
+          echo "Creating release v${{needs.build.outputs.VERSION}}"
+          gh release create v${{needs.build.outputs.VERSION}} --generate-notes
+          gh release upload v${{needs.build.outputs.VERSION}} TapToQR-${{needs.build.outputs.VERSION}}.zip
+
+  release-firefox:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Firefox Release"
+    if: ${{ github.event.inputs.publish-firefox == 'true' }}
+    needs:
+      [
+        build
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - uses: wdzeng/firefox-addon@1c933bcfc899dad45719bc23ec8c607d51bf8c06
+        name: "Upload to Firefox Addon Store"
+        with:
+          addon-guid: "taptoqr@moritzreis.dev"
+          xpi-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
+          self-hosted: false
+          jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
+
+  release-chrome:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Chrome Release"
+    if: ${{ github.event.inputs.publish-chrome == 'true' }}
+    needs:
+      [
+        build
+      ]
+
+    env:
+      EXTENSION_ID: "ommdikomjapdndpedljobeecepeopjmp"
+      CLIENT_ID: ${{ secrets.CI_GOOGLE_CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CI_GOOGLE_CLIENT_SECRET }}
+      REFRESH_TOKEN: ${{ secrets.CI_GOOGLE_REFRESH_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - name: "Setup Google Webstore CLI"
+        run: |
+          npm install -g chrome-webstore-upload-cli
+
+      - name: "Upload to Chrome Webstore"
+        run: |-
+          cd TapToQR-addon
+
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          rm TapToQR-${{needs.build.outputs.VERSION}}.zip
+
+          chrome-webstore-upload
+
+  release-edge:
+    runs-on: ubuntu-latest
+    name: "Create TapToQR Edge Release"
+    if: ${{ github.event.inputs.publish-edge == 'true' }}
+    needs:
+      [
+        build
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+
+      - name: Prepare Artifact
+        run: |
+          cd TapToQR-addon
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          rm TapToQR-${{needs.build.outputs.VERSION}}.zip
+          FILE="manifest.json"
+          jq 'del(.browser_specific_settings)' "$FILE" > temp_manifest.json && mv temp_manifest.json "$FILE"
+          # zip again
+          zip -r TapToQR-${{needs.build.outputs.VERSION}}.zip ./*
+
+      - uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9
+        with:
+          product-id: "1cc708c2-05e8-4339-9fdb-ddca04acf678"
+          zip-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
+          api-key: ${{ secrets.MICROSOFT_API_KEY }}
+          client-id: ${{ secrets.MICROSOFT_CLIENT_ID }}
