@@ -8,6 +8,11 @@ on:
         type: string
         required: false
 
+    outputs:
+      VERSION:
+        description: "The version of the addon to build"
+        value: ${{ jobs.build-artifact.outputs.VERSION }}
+
   workflow_call:
     inputs:
       VERSION:
@@ -30,6 +35,9 @@ jobs:
   build-artifact:
     name: "Build TapToQR Artifact"
     runs-on: ubuntu-latest
+
+    outputs:
+      VERSION: ${{ steps.determine-version.outputs.VERSION }}
 
     steps:
       - name: Checkout code

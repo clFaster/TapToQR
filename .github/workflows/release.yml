@@ -6,7 +6,7 @@ on:
       skip-update:
         type: boolean
         description: "Skip the version update step"
-        required: false
+        required: true
         default: false
       release-type:
         type: choice
@@ -20,22 +20,22 @@ on:
       publish-firefox:
         type: boolean
         description: Should the Firefox Addon be published?
-        required: false
+        required: true
         default: true
       publish-chrome:
         type: boolean
         description: Should the Chrome Extension be published?
-        required: false
+        required: true
         default: true
       publish-edge:
         type: boolean
         description: Should the Edge Extension be published?
-        required: false
+        required: true
         default: true
       publish-github:
         type: boolean
         description: Should the Github Release be published?
-        required: false
+        required: true
         default: true
 
 concurrency:
@@ -148,9 +148,9 @@ jobs:
         env:
           GH_TOKEN: ${{github.token}}
         run: |
-          echo "Creating release v${{needs.update-version.outputs.new_version}}"
-          gh release create v${{needs.update-version.outputs.new_version}} --generate-notes
-          gh release upload v${{needs.update-version.outputs.new_version}} TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          echo "Creating release v${{needs.build.outputs.VERSION}}"
+          gh release create v${{needs.build.outputs.VERSION}} --generate-notes
+          gh release upload v${{needs.build.outputs.VERSION}} TapToQR-${{needs.build.outputs.VERSION}}.zip
 
   release-firefox:
     runs-on: ubuntu-latest
@@ -172,7 +172,7 @@ jobs:
         name: "Upload to Firefox Addon Store"
         with:
           addon-guid: "taptoqr@moritzreis.dev"
-          xpi-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          xpi-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
           self-hosted: false
           jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
           jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
@@ -208,8 +208,8 @@ jobs:
         run: |-
           cd TapToQR-addon
 
-          unzip TapToQR-${{needs.update-version.outputs.new_version}}.zip
-          rm TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          rm TapToQR-${{needs.build.outputs.VERSION}}.zip
 
           chrome-webstore-upload
 
@@ -232,6 +232,6 @@ jobs:
       - uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9
         with:
           product-id: "1cc708c2-05e8-4339-9fdb-ddca04acf678"
-          zip-path: TapToQR-addon/TapToQR-${{needs.update-version.outputs.new_version}}.zip
+          zip-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
           api-key: ${{ secrets.MICROSOFT_API_KEY }}
           client-id: ${{ secrets.MICROSOFT_CLIENT_ID }}
