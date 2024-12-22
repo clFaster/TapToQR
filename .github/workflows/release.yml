@@ -67,7 +67,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        if: ${{ !github.event.inputs.skip-update }}
+        if: ${{ github.event.inputs.skip-update == 'false' }}
         run: |
           # Retrieve the increment type from the GitHub Actions input
           increment="${{ inputs.release-type }}"
@@ -111,7 +111,7 @@ jobs:
 
       - name: Update version var
         id: write_version
-        if: ${{ !github.event.inputs.skip-update }}
+        if: ${{ github.event.inputs.skip-update == 'false' }}
         env:
           GITHUB_TOKEN: ${{ secrets.VAR_UPDATE_GITHUB }}
         run: |
@@ -129,7 +129,7 @@ jobs:
   release-github:
     runs-on: ubuntu-latest
     name: "Create TapToQR Github Release"
-    if: ${{ github.event.inputs.publish-github == true }}
+    if: ${{ github.event.inputs.publish-github == 'true' }}
     permissions: write-all
     needs:
       [
@@ -154,7 +154,7 @@ jobs:
   release-firefox:
     runs-on: ubuntu-latest
     name: "Create TapToQR Firefox Release"
-    if: ${{ github.event.inputs.publish-firefox == true }}
+    if: ${{ github.event.inputs.publish-firefox == 'true' }}
     needs:
       [
         build
@@ -178,7 +178,7 @@ jobs:
   release-chrome:
     runs-on: ubuntu-latest
     name: "Create TapToQR Chrome Release"
-    if: ${{ github.event.inputs.publish-chrome == true }}
+    if: ${{ github.event.inputs.publish-chrome == 'true' }}
     needs:
       [
         build
@@ -213,7 +213,7 @@ jobs:
   release-edge:
     runs-on: ubuntu-latest
     name: "Create TapToQR Edge Release"
-    if: ${{ github.event.inputs.publish-edge == true }}
+    if: ${{ github.event.inputs.publish-edge == 'true' }}
     needs:
       [
         build
