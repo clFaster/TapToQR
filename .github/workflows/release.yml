@@ -46,7 +46,6 @@ jobs:
   # Get the Current Version and Bump it depending on the release-type input
   update-version:
     name: "Update TapToQR Version"
-    if: ${{ !github.event.inputs.skip-update }}
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
@@ -55,12 +54,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Ensure branch is main
-        if: github.ref != 'refs/heads/main'
-        run: |
-          text="Publish a new version can only be done from the main branch."
-          echo "::error title=Wrong Branch::$text"
-          exit 1
+#      - name: Ensure branch is main
+#        if: github.ref != 'refs/heads/main'
+#        run: |
+#          text="Publish a new version can only be done from the main branch."
+#          echo "::error title=Wrong Branch::$text"
+#          exit 1
 
       - name: Read current version
         run: |
@@ -68,6 +67,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
+        if: ${{ !github.event.inputs.skip-update }}
         run: |
           # Retrieve the increment type from the GitHub Actions input
           increment="${{ inputs.release-type }}"
@@ -111,6 +111,7 @@ jobs:
 
       - name: Update version var
         id: write_version
+        if: ${{ !github.event.inputs.skip-update }}
         env:
           GITHUB_TOKEN: ${{ secrets.VAR_UPDATE_GITHUB }}
         run: |
