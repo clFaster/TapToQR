@@ -37,8 +37,7 @@
     },
     "browser_specific_settings": {
         "gecko": {
-            "id": "taptoqr@moritzreis.dev",
-            "strict_min_version": "121.0"
+            "id": "taptoqr@moritzreis.dev"
         }
     }
 }
