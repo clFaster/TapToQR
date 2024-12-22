@@ -129,12 +129,11 @@ jobs:
   release-github:
     runs-on: ubuntu-latest
     name: "Create TapToQR Github Release"
-    if: ${{ github.event.inputs.publish-github }}
+    if: ${{ github.event.inputs.publish-github == true }}
     permissions: write-all
     needs:
       [
-        build,
-        update-version
+        build
       ]
     steps:
       - name: Checkout code
@@ -155,11 +154,10 @@ jobs:
   release-firefox:
     runs-on: ubuntu-latest
     name: "Create TapToQR Firefox Release"
-    if: ${{ github.event.inputs.publish-firefox }}
+    if: ${{ github.event.inputs.publish-firefox == true }}
     needs:
       [
-        build,
-        update-version
+        build
       ]
     steps:
       - name: Checkout code
@@ -180,11 +178,10 @@ jobs:
   release-chrome:
     runs-on: ubuntu-latest
     name: "Create TapToQR Chrome Release"
-    if: ${{ github.event.inputs.publish-chrome }}
+    if: ${{ github.event.inputs.publish-chrome == true }}
     needs:
       [
-        build,
-        update-version
+        build
       ]
 
     env:
@@ -216,11 +213,10 @@ jobs:
   release-edge:
     runs-on: ubuntu-latest
     name: "Create TapToQR Edge Release"
-    if: ${{ github.event.inputs.publish-edge }}
+    if: ${{ github.event.inputs.publish-edge == true }}
     needs:
       [
-        build,
-        update-version
+        build
       ]
     steps:
       - name: Checkout code
@@ -228,6 +224,16 @@ jobs:
 
       - name: Download Artifact
         uses: actions/download-artifact@v4
+
+      - name: Prepare Artifact
+        run: |
+          cd TapToQR-addon
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          rm TapToQR-${{needs.build.outputs.VERSION}}.zip
+          FILE="manifest.json"
+          jq 'del(.browser_specific_settings)' "$FILE" > temp_manifest.json && mv temp_manifest.json "$FILE"
+          # zip again
+          zip -r TapToQR-${{needs.build.outputs.VERSION}}.zip ./*
 
       - uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9
         with:
