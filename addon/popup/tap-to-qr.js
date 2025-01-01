@@ -100,7 +100,7 @@ async function convertSvgToPng(svgData) {
     const result = await Promise.all([
         browser.storage.local.get("qrCodeDownloadSize")
     ]);
-    
+
     const qrCodeDownloadSize = result[0].qrCodeDownloadSize !== undefined ? result[0].qrCodeDownloadSize : DEFAULT_PNG_SIZE;
 
 
@@ -121,6 +121,28 @@ async function convertSvgToPng(svgData) {
 
 document.getElementById("download-btn").addEventListener("click", downloadQrCodeAsPng);
 document.getElementById("copy-btn").addEventListener("click", copyQrCodeToClipboard);
+document.getElementById("additional-window-btn").addEventListener("click", openCustomQrWindow);
+document.getElementById("setting-btn").addEventListener("click", openSettingPage);
+
+function openSettingPage() {
+    browser.runtime.openOptionsPage().then(() => {
+        // Close the current window only if it's the popup
+        if (window.location.protocol === "moz-extension:" || window.location.protocol === "chrome-extension:") {
+            window.close();
+        }
+    }).catch(error => {
+        console.error("Failed to open settings page:", error);
+    });
+}
+
+function openCustomQrWindow() {
+    browser.windows.create({
+        url: "./../custom-qr-window/custom-qr-window.html",
+        type: "popup",
+        width: 400,
+        height: 600
+    });
+}
 
 browser.tabs.query({ active: true, currentWindow: true }).then(async tabs => {
     const url = tabs[0].url;
@@ -130,17 +152,17 @@ browser.tabs.query({ active: true, currentWindow: true }).then(async tabs => {
     ]);
     const qrCodeSize = result[0].qrCodeSize !== undefined ? result[0].qrCodeSize : DEFAULT_SVG_SIZE;
     const displayLogo = result[1].displayLogo !== undefined ? result[1].displayLogo : DEFAULT_LOGO;
-    
+
     let qrCodeSvg = await getQrCodeSvg(url, qrCodeSize);
     if (displayLogo) {
         const svgIcon = await loadSvgIcon(browser.runtime.getURL(SVG_ICON_PATH));
         qrCodeSvg = addIconToQrCodeSvg(qrCodeSvg, svgIcon, qrCodeSize);
     }
     qrCodeContainer.innerHTML = '';
-    
+
     const parser = new DOMParser();
     const svgDoc = parser.parseFromString(qrCodeSvg, "image/svg+xml");
     const svgElement = svgDoc.documentElement;
-    
+
     qrCodeContainer.appendChild(svgElement);
 });

@@ -38,8 +38,9 @@ h1 {
 
 .button {
     border: none;
-    padding: 10px 25px;
-    border-radius: 28px;
+    width: 47px;
+    height: 47px;
+    border-radius: 15px;
     color: var(--fg-color);
     background-color: var(--primary-color);
     cursor: pointer;
@@ -47,7 +48,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
 }
 
 .button svg {
@@ -56,9 +56,17 @@ h1 {
 
 .button:hover {
     background-color: var(--secondary-color);
-    transform: scale(1.05);
+    transform: scale(1.10);
 }
 
 .hidden {
     display: none !important;
+}
+
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
