@@ -8,6 +8,10 @@
 <body>
 <div class="qr-container">
     <h1>TapToQR</h1>
+    <div>
+        <input type="text" id="qr-input" placeholder="Enter text for QR code" />
+        <button id="generate-btn" class="button">Generate</button>
+    </div>
     <div id="qr-code"></div>
     <div class="button-container">
         <button id="download-btn" class="button" title="Download as PNG">
@@ -26,7 +30,6 @@
 </div>
 <script type="application/javascript" src="../libs/browser-polyfill.js" defer></script>
 <script src="../popup/bundle.js" defer></script>
-<script src="custom-qr-window.js" defer></script>
-<script src="../popup/tap-to-qr.js" defer></script>
+<script type="module" src="custom-qr-window.js" defer></script>
 </body>
 </html>
