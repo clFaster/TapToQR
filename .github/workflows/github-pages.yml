@@ -1,0 +1,68 @@
+name: "Publish TapToQR to GitHub Pages"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: "Build TapToQR Website"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        working-directory: ./github-pages/tap-to-qr-website
+        run: npm install
+
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
+
+      - name: Build with Next.js
+        working-directory: ./github-pages/tap-to-qr-website
+        run: npx next build
+
+      - name: Add CNAME file
+        run: echo "taptoqr.moritzreis.dev" > ./github-pages/tap-to-qr-website/out/CNAME
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./github-pages/tap-to-qr-website/out
+
+  deploy:
+    name: "Deploy TapToQR Website"
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
