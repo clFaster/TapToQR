@@ -44,10 +44,9 @@ jobs:
         run: npx next build
 
       - name: Upload artifact
-        working-directory: ./github-pages/tap-to-qr-website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./github-pages/tap-to-qr-website/out
 
   deploy:
     runs-on: ubuntu-latest
