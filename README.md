@@ -20,11 +20,16 @@
 
 With **TapToQR** you can instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.
 
-| Addon | Settings |
-| -------- | ------- |
-| Click the **TapToQr** icon in the toolbar to generate a QR code for the current webpage. You can then scan the QR code with your phone, download it for later, or copy the image to your clipboard for easy sharing. | In the settings, you can customize the QR code size displayed in the popup and set the default download resolution. |
-| ![TapToQR Logo](./docs/TapToQR-Preview-1.png) | ![TapToQR Logo](./docs/TapToQR-Preview-2.png) |
+| Share current Page as QR code                                                                                                                                                                                        |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Click the **TapToQr** icon in the toolbar to generate a QR code for the current webpage. You can then scan the QR code with your phone, download it for later, or copy the image to your clipboard for easy sharing. |
+| ![TapToQR Logo](./docs/TapToQR-Preview-1.png)                                                                                                                                                                        |
 
+
+| Settings                                                                                                            |
+|---------------------------------------------------------------------------------------------------------------------|
+| In the settings, you can customize the QR code size displayed in the popup and set the default download resolution. |
+| ![TapToQR Logo](./docs/TapToQR-Preview-2.png)                                                                       |
 
 ## Issues
 
