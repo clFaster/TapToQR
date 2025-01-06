@@ -17,11 +17,11 @@ const generateBtn = document.getElementById('generate-btn');
  */
 function initializeEventListeners() {
     downloadBtn.addEventListener("click", () => downloadQrCodeAsPng(qrCodeDiv));
-    copyBtn.addEventListener("click", () => copyQrCodeToClipboard(qrCodeDiv));
-    generateBtn.addEventListener("click", () => {
+    qrInput.addEventListener("input", (event) => {
         const inputText = qrInput.value.trim() || PLACEHOLDER;
         renderQrCode(inputText).then();
     });
+    copyBtn.addEventListener("click", () => copyQrCodeToClipboard(qrCodeDiv));
 }
 
 /**
