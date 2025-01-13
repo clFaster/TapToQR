@@ -1,0 +1,18 @@
+:root {
+    --main-font-family: "Source Sans Pro";
+    --bg-color: #131515;
+    --fg-color: #FFFAFB;
+    --grey-bg-color: #2B2C28;
+    --primary-color: #339989;
+    --secondary-color: #7DE2D1;
+}
+
+body {
+    font-family: var(--main-font-family), sans-serif;
+    background-color: var(--bg-color);
+    color: var(--fg-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
