@@ -19,13 +19,10 @@ export const SettingsContainer = styled.div`
     background-color: var(--grey-bg-color, #2B2C28);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
-`;
-
-export const ButtonContainer = styled.div`
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-    justify-content: center;
+    
+    form {
+        width: 80%;
+    }
 `;
 
 export const FormGroup = styled.section`
@@ -34,7 +31,7 @@ export const FormGroup = styled.section`
     padding-bottom: 10px;
 `;
 
-export const SettingLabel = styled.label`
+export const InputLabel = styled.label`
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
@@ -42,33 +39,99 @@ export const SettingLabel = styled.label`
     align-items: center;
 `;
 
-export const SliderContainer = styled.div`
+export const InputContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 15px;
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 8px;
+        background: var(--primary-color);
+        border-radius: 5px;
+        outline: none;
+        margin-top: 5px;
+        transition: background 0.3s;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    input[type="range"]:hover::-webkit-slider-thumb {
+        background: var(--secondary-color);
+        transform: scale(1.1);
+    }
+
+    input[type="range"]:hover::-moz-range-thumb {
+        background: var(--secondary-color);
+        transform: scale(1.1);
+    }
+
+    input[type="range"]:active {
+        background: var(--secondary-color);
+    }
+
+    input[type="checkbox"] {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin-top: 15px;
+        margin-left: 5px;
+        appearance: none;
+        background: var(--grey-bg-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+    }
+
+    input[type="checkbox"]:checked {
+        background: var(--primary-color);
+        border-color: var(--secondary-color);
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 3px;
+        width: 10px;
+        height: 20px;
+        border: solid var(--fg-color);
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+    }
+
+    input[type="checkbox"]:hover {
+        border-color: var(--secondary-color);
+    }
 `;
 
 export const CurrentValue = styled.span`
     font-size: 18px;
-`;
-
-export const Button = styled.button`
-    border: none;
-    width: 47px;
-    height: 47px;
-    border-radius: 15px;
-    color: var(--fg-color);
-    background-color: var(--primary-color, #339989);
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-        background-color: var(--secondary-color, #7DE2D1);
-        transform: scale(1.10);
-    }
 `;
 
 export const Toast = styled.div`
@@ -84,14 +147,4 @@ export const Toast = styled.div`
     transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
     z-index: 1000;
-
-    &.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-
-    &.hide {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
 `;

@@ -1,64 +1,40 @@
 import React, {useState, useEffect} from "react";
-import browser from 'webextension-polyfill';
 import {
     OptionContainer,
     SettingsContainer,
-    ButtonContainer,
     FormGroup,
-    SettingLabel,
-    SliderContainer,
+    InputLabel,
+    InputContainer,
     CurrentValue,
-    Button,
     Toast
 } from "../../styled/styled.ts";
 import TapToQrHeader from "../Shared/TapToQrHeader/TapToQrHeader.tsx";
-
-const DEFAULT_SVG_SIZE = 230;
-const DEFAULT_PNG_SIZE = 500;
-const DEFAULT_LOGO = true;
-
-// Define the interface for the structure of the storage result
-interface StorageResult {
-    qrCodeSize?: number;
-    qrCodeDownloadSize?: number;
-    displayLogo?: boolean;
-}
-
+import {
+    ExtensionSettings,
+    loadExtensionSettings,
+    revertExtensionSettings,
+    saveExtensionSettings
+} from "../../utils/browser-storage.ts";
+import {Button, ButtonContainer} from "../../styled/styled-button.ts";
 
 const Options = () => {
-    const [qrCodeSize, setQrCodeSize] = useState(DEFAULT_SVG_SIZE);
-    const [qrCodeDownloadSize, setQrCodeDownloadSize] = useState(DEFAULT_PNG_SIZE);
-    const [displayLogo, setDisplayLogo] = useState(DEFAULT_LOGO);
+    const [extensionSettings, setExtensionSettings] = useState({ qrCodeSize: 0, qrCodeDownloadSize: 0, displayLogo: false } as ExtensionSettings);
+
     const [toastMessage, setToastMessage] = useState("");
 
     const saveOptions = async () => {
-        await browser.storage.local.set({
-            qrCodeSize,
-            qrCodeDownloadSize,
-            displayLogo,
-        });
+        saveExtensionSettings(extensionSettings).then();
         showToast("Settings saved!");
     };
 
-    const loadOptionsAndRestoreUi = async () => {
-        const result = await browser.storage.local.get([
-            "qrCodeSize",
-            "qrCodeDownloadSize",
-            "displayLogo",
-        ]) as StorageResult;
-
-        setQrCodeSize(result.qrCodeSize || DEFAULT_SVG_SIZE);
-        setQrCodeDownloadSize(result.qrCodeDownloadSize || DEFAULT_PNG_SIZE);
-        setDisplayLogo(result.displayLogo !== undefined ? result.displayLogo : DEFAULT_LOGO);
+    const loadOptions = async () => {
+        const result = await loadExtensionSettings();
+        setExtensionSettings(result);
     };
 
     const revertOptions = async () => {
-        await browser.storage.local.set({
-            qrCodeSize: DEFAULT_SVG_SIZE,
-            qrCodeDownloadSize: DEFAULT_PNG_SIZE,
-            displayLogo: DEFAULT_LOGO,
-        });
-        loadOptionsAndRestoreUi().then();
+        const result = await revertExtensionSettings();
+        setExtensionSettings(result);
         showToast("Settings reverted to defaults!");
     };
 
@@ -69,16 +45,29 @@ const Options = () => {
         }, 2000);
     };
 
-    const handleQrCodeSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQrCodeSize(parseInt(event.target.value));
+    const updateQrCodeSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setExtensionSettings({
+            ...extensionSettings,
+            qrCodeSize: parseInt(event.target.value)
+        });
     };
 
-    const handleQrCodeDownloadSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setQrCodeDownloadSize(parseInt(event.target.value));
+    const updateQrCodeDownloadSize = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setExtensionSettings({
+            ...extensionSettings,
+            qrCodeDownloadSize: parseInt(event.target.value)
+        });
     };
+
+    const updateDisplayLogo = (b: boolean)=> {
+        setExtensionSettings({
+            ...extensionSettings,
+            displayLogo: b
+        });
+    }
 
     useEffect(() => {
-        loadOptionsAndRestoreUi().then();
+        loadOptions().then();
     }, []);
 
     return (
@@ -88,63 +77,65 @@ const Options = () => {
             <SettingsContainer>
                 <form>
                     <FormGroup>
-                        <SettingLabel htmlFor="qrCodeSize">
+                        <InputLabel htmlFor="qrCodeSize">
                             QR Code Preview Size:
-                        </SettingLabel>
-                        <SliderContainer>
+                        </InputLabel>
+                        <InputContainer>
                             <input
                                 type="range"
                                 id="qrCodeSize"
                                 min="150"
                                 max="450"
                                 step="10"
-                                value={qrCodeSize}
-                                onChange={handleQrCodeSizeChange}
+                                value={extensionSettings.qrCodeSize}
+                                onChange={updateQrCodeSize}
                                 aria-labelledby="qrCodeSizeValue"
                             />
                             <CurrentValue id="qrCodeSizeValue">
-                                {qrCodeSize}
+                                {extensionSettings.qrCodeSize}
                             </CurrentValue>
-                        </SliderContainer>
+                        </InputContainer>
                     </FormGroup>
 
                     <FormGroup>
-                        <SettingLabel htmlFor="qrCodeDownloadSize">
+                        <InputLabel htmlFor="qrCodeDownloadSize">
                             QR Code Download Size:
-                        </SettingLabel>
-                        <SliderContainer>
+                        </InputLabel>
+                        <InputContainer>
                             <input
                                 type="range"
                                 id="qrCodeDownloadSize"
                                 min="160"
                                 max="600"
                                 step="10"
-                                value={qrCodeDownloadSize}
-                                onChange={handleQrCodeDownloadSizeChange}
+                                value={extensionSettings.qrCodeDownloadSize}
+                                onChange={updateQrCodeDownloadSize}
                                 aria-labelledby="qrCodeDownloadSizeValue"
                             />
                             <CurrentValue id="qrCodeDownloadSizeValue">
-                                {qrCodeDownloadSize}
+                                {extensionSettings.qrCodeDownloadSize}
                             </CurrentValue>
-                        </SliderContainer>
+                        </InputContainer>
                     </FormGroup>
 
                     <FormGroup>
-                        <SettingLabel htmlFor="displayLogo">
+                        <InputLabel htmlFor="displayLogo">
                             Display Logo:
+                        </InputLabel>
+                        <InputContainer>
                             <input
                                 type="checkbox"
                                 id="displayLogo"
-                                checked={displayLogo}
-                                onChange={() => setDisplayLogo(!displayLogo)}
+                                checked={extensionSettings.displayLogo}
+                                onChange={() => updateDisplayLogo(!extensionSettings.displayLogo)}
                             />
-                        </SettingLabel>
+                        </InputContainer>
                     </FormGroup>
 
                     <ButtonContainer>
                         <Button type="button" id="save-btn" title="Save Settings" onClick={saveOptions}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="24">
-                                <path
+                            <path
                                     d="M48 96l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-245.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3L448 416c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l245.5 0c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8L320 184c0 13.3-10.7 24-24 24l-192 0c-13.3 0-24-10.7-24-24L80 80 64 80c-8.8 0-16 7.2-16 16zm80-16l0 80 144 0 0-80L128 80zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"/>
                             </svg>
                         </Button>
