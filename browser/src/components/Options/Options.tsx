@@ -71,7 +71,7 @@ const Options = () => {
         <div>
             <header className="header">
                 <img
-                    src="../../img/ic_TapToQR.svg"
+                    src="./../img/ic_TapToQR.svg"
                     alt="TapToQR Icon"
                     className="svg-icon"
                     aria-hidden="true"
