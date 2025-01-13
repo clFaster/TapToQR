@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    font-family: var(--main-font-family, "Source Sans Pro"), sans-serif;
-    background-color: var(--bg-color, #131515);
-    color: var(--fg-color, #FFFAFB);
+export const OptionContainer = styled.main`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,26 +9,7 @@ export const Container = styled.div`
     margin: 0;
 `;
 
-export const Header = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
-`;
-
-export const Icon = styled.img`
-    height: 60px;
-    margin-right: 15px;
-`;
-
-export const Title = styled.h1`
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    margin: 2px 0 5px 0;
-`;
-
-export const SettingsContainer = styled.main`
+export const SettingsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

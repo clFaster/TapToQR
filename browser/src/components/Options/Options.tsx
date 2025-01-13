@@ -1,10 +1,7 @@
 import React, {useState, useEffect} from "react";
 import browser from 'webextension-polyfill';
 import {
-    Container,
-    Header,
-    Icon,
-    Title,
+    OptionContainer,
     SettingsContainer,
     ButtonContainer,
     FormGroup,
@@ -14,6 +11,7 @@ import {
     Button,
     Toast
 } from "../../styled/styled.ts";
+import TapToQrHeader from "../Shared/TapToQrHeader/TapToQrHeader.tsx";
 
 const DEFAULT_SVG_SIZE = 230;
 const DEFAULT_PNG_SIZE = 500;
@@ -84,11 +82,8 @@ const Options = () => {
     }, []);
 
     return (
-        <Container>
-            <Header>
-                <Icon src="./../img/ic_TapToQR.svg" alt="TapToQR Icon" aria-hidden="true"/>
-                <Title>TapToQR Settings</Title>
-            </Header>
+        <OptionContainer>
+            <TapToQrHeader title="TapToQR Settings"/>
 
             <SettingsContainer>
                 <form>
@@ -165,7 +160,7 @@ const Options = () => {
             </SettingsContainer>
 
             {toastMessage && <Toast className="show">{toastMessage}</Toast>}
-        </Container>
+        </OptionContainer>
     );
 };
 
