@@ -1,7 +1,10 @@
 {
   "name": "tap-to-qr",
-  "private": true,
   "version": "0.0.0",
+  "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
+  "license": "GPL-3.0",
+  "author": "Moritz Reis",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "tsc -b & vite build --watch",
