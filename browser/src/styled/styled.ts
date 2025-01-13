@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+export const PopupContainer = styled.main`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px 5px 5px;
+    width: 200px;
+    height: 200px;
+`;
+
+export const QrCodeContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 5px 5px 5px;
+`;
+
 export const OptionContainer = styled.main`
     display: flex;
     align-items: center;

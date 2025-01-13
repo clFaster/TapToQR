@@ -9,8 +9,8 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
     border: none;
-    width: 47px;
-    height: 47px;
+    width: 50px;
+    height: 50px;
     border-radius: 15px;
     color: var(--fg-color);
     background-color: var(--primary-color, #339989);
@@ -20,10 +20,6 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
 
-    svg {
-        fill: var(--fg-color);
-    }
-    
     &:hover {
         background-color: var(--secondary-color, #7DE2D1);
         transform: scale(1.10);
