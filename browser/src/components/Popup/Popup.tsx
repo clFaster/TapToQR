@@ -14,20 +14,10 @@ const Popup = () => {
     const [qrCodeSvg, setQrCodeSvg] = useState("");
 
     const generateQrContent = async () => {
-        let r = await loadExtensionSettings();
-
-        const item = new ClipboardItem({ 'text/plain': new Blob([`${r.displayLogo} ${r.qrCodeDownloadSize} ${r.qrCodeSize}`], { type: 'text/plain' }) });
-        await navigator.clipboard.write([item]);
-
+        let extensionSettings = await loadExtensionSettings();
         let currentUrl = await getActiveTab() || "hallo";
-
-        let svg = await generateSvgContent(currentUrl, r.qrCodeSize, r.displayLogo);
-
-        console.log(svg);
-
-        setQrCodeSvg(
-            svg
-        );
+        let svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeSize, extensionSettings.displayLogo);
+        setQrCodeSvg(svg);
     }
 
     useEffect(() => {

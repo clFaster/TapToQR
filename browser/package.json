@@ -7,7 +7,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "tsc -b & vite build --watch",
+    "dev": "vite build --watch",
+    "start:firefox": "web-ext run --start-url https://mozilla.org --browser-console --source-dir build",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -38,6 +39,7 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
     "vite": "^6.0.5",
+    "web-ext": "^8.3.0",
     "webextension-polyfill": "^0.12.0"
   }
 }
