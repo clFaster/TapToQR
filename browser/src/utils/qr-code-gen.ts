@@ -98,3 +98,11 @@ export const copyQrCodeToClipboard = async (svg: string, qrCodeSize: number) => 
 
     await navigator.clipboard.write([item]);
 }
+
+export const downloadQrCodeAsPng = async (svg: string, qrCodeSize: number) => {
+    const pngUrl = await convertSvgToPng(svg, qrCodeSize);
+    const a = document.createElement('a');
+    a.href = pngUrl as string;
+    a.download = 'qr-code.png';
+    a.click();
+}

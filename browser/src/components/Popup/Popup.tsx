@@ -7,7 +7,11 @@ import {faCopy} from "@fortawesome/free-regular-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUpRightFromSquare, faDownload, faGear} from "@fortawesome/free-solid-svg-icons";
 import {getActiveTab} from "../../utils/browser-tabs.ts";
-import {copyQrCodeToClipboard, generateSvgContent} from "../../utils/qr-code-gen.ts";
+import {
+    copyQrCodeToClipboard,
+    downloadQrCodeAsPng,
+    generateSvgContent
+} from "../../utils/qr-code-gen.ts";
 import {openCustomQrPage, openExtensionSettingsPage} from "../../utils/browser-runtime.ts";
 
 const Popup = () => {
@@ -38,8 +42,11 @@ const Popup = () => {
         copyQrCodeToClipboard(svg, extensionSettings.qrCodeDownloadSize).then();
     }
 
-    const downloadQrCode = () => {
-
+    const downloadQrCode = async () => {
+        const extensionSettings = await loadExtensionSettings();
+        let currentUrl = await getActiveTab() || "hallo";
+        let svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeDownloadSize, extensionSettings.displayLogo);
+        downloadQrCodeAsPng(svg, extensionSettings.qrCodeDownloadSize).then();
     }
 
     const openCustomQrCodeWindow = () => {
