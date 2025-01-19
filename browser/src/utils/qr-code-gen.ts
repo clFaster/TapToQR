@@ -5,7 +5,7 @@ const generateQrCodeSvg = async (content: any, width: any) => {
     try {
         return await QRCode.toString(content, {
             width: width,
-            margin: 2,
+            margin: 1,
             errorCorrectionLevel: 'H',
         });
     } catch (error) {
@@ -57,12 +57,44 @@ const addIconToQrCode = async (svg: any, width: number) => {
     `;
 }
 
+
+async function convertSvgToPng(svgData: string, qrCodeSize: number) {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+
+    const qrCodeDownloadSize = qrCodeSize;
+    console.log("QR-Code-Download-Size:", qrCodeDownloadSize);
+
+    canvas.width = qrCodeDownloadSize;
+    canvas.height = qrCodeDownloadSize;
+
+    const img = new Image();
+    img.src = `data:image/svg+xml;base64,${btoa(svgData)}`;
+
+    return new Promise((resolve) => {
+        img.onload = function() {
+            context?.drawImage(img, 0, 0);
+            const pngUrl = canvas.toDataURL("image/png");
+            resolve(pngUrl);
+        };
+    });
+}
+
 export const generateSvgContent = async (content: string, size: number, displayLogo: boolean) => {
-        let svg = await generateQrCodeSvg(content, size);
+    let svg = await generateQrCodeSvg(content, size);
 
-        if (displayLogo) {
-            svg = await addIconToQrCode(svg, size);
-        }
-
-        return svg;
+    if (displayLogo) {
+        svg = await addIconToQrCode(svg, size);
     }
+
+    return svg;
+}
+
+export const copyQrCodeToClipboard = async (svg: string, qrCodeSize: number) => {
+    const pngUrl = await convertSvgToPng(svg, qrCodeSize);
+    const response = await fetch(pngUrl as URL);
+    const blob = await response.blob();
+    const item = new ClipboardItem({ 'image/png': blob });
+
+    await navigator.clipboard.write([item]);
+}

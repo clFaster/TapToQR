@@ -5,7 +5,6 @@ interface HeaderProps {
     hideIcon?: boolean;
 }
 
-// Header Component with editable Title
 const TapToQrHeader = (props: HeaderProps) => {
 
     return (
