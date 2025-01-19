@@ -1,6 +1,6 @@
 # TapToQR
 
-![TapToQR Logo](./extension/addon/img/ic_TapToQR_128.png)
+![TapToQR Logo](./browser/public/img/ic_TapToQR_128.png)
 
 ***
 
