@@ -27,6 +27,7 @@ export default defineConfig({
       input: {
         popup: './pages/popup.html',
         options: './pages/options.html',
+        customQr: './pages/customQr.html',
       },
       output: {
         entryFileNames: 'pages/[name].js',

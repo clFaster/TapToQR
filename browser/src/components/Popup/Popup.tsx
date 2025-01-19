@@ -8,6 +8,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowUpRightFromSquare, faDownload, faGear} from "@fortawesome/free-solid-svg-icons";
 import {getActiveTab} from "../../utils/browser-tabs.ts";
 import {generateSvgContent} from "../../utils/qr-code-gen.ts";
+import {openCustomQrPage, openExtensionSettingsPage} from "../../utils/browser-runtime.ts";
 
 const Popup = () => {
 
@@ -34,21 +35,33 @@ const Popup = () => {
 
     }
 
+    const downloadQrCode = () => {
+
+    }
+
+    const openCustomQrCodeWindow = () => {
+        openCustomQrPage();
+    }
+
+    const openExtensionSettings = () => {
+        openExtensionSettingsPage().then();
+    }
+
     return (
         <PopupContainer id={"popup-container"}>
             <TapToQrHeader title={"TapToQR"} hideIcon={true}/>
             <QrCodeContainer dangerouslySetInnerHTML={{__html: qrCodeSvg}}/>
             <ButtonContainer>
-                <Button id="download-btn" title="Download as PNG">
+                <Button id="download-btn" title="Download as PNG" onClick={downloadQrCode}>
                     <FontAwesomeIcon icon={faDownload} size={"2x"}/>
                 </Button>
-                <Button id="copy-btn" title="Copy to Clipboard">
-                    <FontAwesomeIcon icon={faCopy} size={"2x"} onClick={copyToClipboard}/>
+                <Button id="copy-btn" title="Copy to Clipboard" onClick={copyToClipboard}>
+                    <FontAwesomeIcon icon={faCopy} size={"2x"}/>
                 </Button>
-                <Button id="additional-window-btn" title="Create custom QR Code">
+                <Button id="additional-window-btn" title="Create custom QR Code" onClick={openCustomQrCodeWindow}>
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} size={"2x"}/>
                 </Button>
-                <Button id="setting-btn" title="Open TapToQR Settings">
+                <Button id="setting-btn" title="Open TapToQR Settings" onClick={openExtensionSettings}>
                     <FontAwesomeIcon icon={faGear} size={"2x"}/>
                 </Button>
             </ButtonContainer>
