@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 8px;
+    padding: 8px 0 8px 0;
     justify-content: center;
 `;
 
@@ -19,7 +19,7 @@ export const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     &:hover {
         background-color: var(--secondary-color, #7DE2D1);
         transform: scale(1.10);

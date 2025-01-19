@@ -5,7 +5,7 @@ export const PopupContainer = styled.main`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5px 5px 5px 5px;
+    padding: 0 3px;
 `;
 
 export const QrCodeContainer = styled.div`
@@ -13,7 +13,7 @@ export const QrCodeContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5px 5px 5px 5px;
+    margin: 0;
 `;
 
 export const OptionContainer = styled.main`

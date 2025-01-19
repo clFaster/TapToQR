@@ -90,8 +90,8 @@ const Options = () => {
                             <input
                                 type="range"
                                 id="qrCodeSize"
-                                min="150"
-                                max="450"
+                                min="220"
+                                max="400"
                                 step="10"
                                 value={extensionSettings.qrCodeSize}
                                 onChange={updateQrCodeSize}

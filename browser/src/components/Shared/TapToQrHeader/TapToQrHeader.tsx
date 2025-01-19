@@ -9,8 +9,7 @@ interface HeaderProps {
 const TapToQrHeader = (props: HeaderProps) => {
 
     return (
-        <HeaderContainer>
-            {/*Hide Icon*/}
+        <HeaderContainer style={props.hideIcon ? {margin: "3px 0 0 0"} : {}}>
             {
                 !props.hideIcon && <HeaderIcon src="./../img/ic_TapToQR.svg" alt="TapToQR Icon" aria-hidden="true" />
             }
