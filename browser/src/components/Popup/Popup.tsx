@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {loadExtensionSettings} from "../../utils/browser-storage.ts";
+import {ExtensionSettings, loadExtensionSettings} from "../../utils/browser-storage.ts";
 import {PopupContainer, QrCodeContainer} from "../../styled/styled.ts";
 import TapToQrHeader from "../Shared/TapToQrHeader/TapToQrHeader.tsx";
 import {Button, ButtonContainer} from "../../styled/styled-button.ts";
@@ -13,24 +13,30 @@ const Popup = () => {
 
     const [qrCodeSvg, setQrCodeSvg] = useState("");
 
-    const generateQrContent = async () => {
-        let extensionSettings = await loadExtensionSettings();
+    const generateQrContent = async (extensionSettings: ExtensionSettings) => {
         let currentUrl = await getActiveTab() || "hallo";
         let svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeSize, extensionSettings.displayLogo);
         setQrCodeSvg(svg);
     }
 
     useEffect(() => {
-        generateQrContent().then();
+        loadExtensionSettings().then(extensionSettings => {
+                generateQrContent(extensionSettings).then(async _ => {
+                    let newWidth = extensionSettings.qrCodeSize + 10;
+                    let popupContainer = document.getElementById("popup-container");
+                    popupContainer?.setAttribute("style", `width: ${newWidth}px`);
+                });
+            }
+        )
     }, []);
 
     const copyToClipboard = async () => {
 
     }
 
-    return(
-        <PopupContainer>
-            <TapToQrHeader title={"TapToQR"} hideIcon={true} />
+    return (
+        <PopupContainer id={"popup-container"}>
+            <TapToQrHeader title={"TapToQR"} hideIcon={true}/>
             <QrCodeContainer dangerouslySetInnerHTML={{__html: qrCodeSvg}}/>
             <ButtonContainer>
                 <Button id="download-btn" title="Download as PNG">
@@ -42,7 +48,7 @@ const Popup = () => {
                 <Button id="additional-window-btn" title="Create custom QR Code">
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} size={"2x"}/>
                 </Button>
-                <Button id="setting-btn"  title="Open TapToQR Settings">
+                <Button id="setting-btn" title="Open TapToQR Settings">
                     <FontAwesomeIcon icon={faGear} size={"2x"}/>
                 </Button>
             </ButtonContainer>

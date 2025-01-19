@@ -6,8 +6,6 @@ export const PopupContainer = styled.main`
     justify-content: center;
     align-items: center;
     margin: 5px 5px 5px 5px;
-    width: 280px;
-    height: 380px;
 `;
 
 export const QrCodeContainer = styled.div`
@@ -16,8 +14,6 @@ export const QrCodeContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin: 5px 5px 5px 5px;
-    width: 250px;
-    height: 250px;
 `;
 
 export const OptionContainer = styled.main`
