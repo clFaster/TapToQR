@@ -1,0 +1,45 @@
+{
+  "name": "tap-to-qr",
+  "version": "0.0.0",
+  "description": "Instantly generate and share a QR code for the webpage you're currently viewing, making link sharing seamless and quick.",
+  "license": "GPL-3.0",
+  "author": "Moritz Reis",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch",
+    "start:firefox": "web-ext run --start-url https://mozilla.org --browser-console --source-dir build",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-regular-svg-icons": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "jimp": "^1.6.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "styled-components": "^6.1.14",
+    "vite-plugin-static-copy": "^2.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@types/webextension-polyfill": "^0.12.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.14.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.5",
+    "web-ext": "^8.3.0",
+    "webextension-polyfill": "^0.12.0"
+  }
+}

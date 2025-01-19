@@ -47,7 +47,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
 
       - name: Determine VERSION
         id: determine-version
@@ -63,24 +62,27 @@ jobs:
           fi
 
       - name: Update Version
+        working-directory: ./browser
         run: |
           jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' package.json > temp.json && mv temp.json package.json
-          cd addon
-          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' manifest.json > temp.json && mv temp.json manifest.json
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' public/manifest.json > public/temp.json && mv public/temp.json public/manifest.json
 
       - name: Install dependencies
+        working-directory: ./browser
         run: npm install
 
       - name: Lint code
+        working-directory: ./browser
         run: npm run lint
 
-      - name: Webpack project
-        run: npm run webpack-prod
+      - name: Build extension
+        working-directory: ./browser
+        run: npm run build
 
       - name: Create Artifact
+        working-directory: ./browser/build
         run: |
-          cd addon
-          zip -r ../TapToQR-${{steps.determine-version.outputs.VERSION}}.zip ./*
+          zip -r ../../TapToQR-${{steps.determine-version.outputs.VERSION}}.zip ./*
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

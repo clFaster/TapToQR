@@ -29,7 +29,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        working-directory: ./github-pages/tap-to-qr-website
+        working-directory: ./website
         run: npm install
 
       - name: Set up Pages
@@ -38,16 +38,16 @@ jobs:
           static_site_generator: next
 
       - name: Build with Next.js
-        working-directory: ./github-pages/tap-to-qr-website
+        working-directory: ./website
         run: npx next build
 
       - name: Add CNAME file
-        run: echo "taptoqr.moritzreis.dev" > ./github-pages/tap-to-qr-website/out/CNAME
+        run: echo "taptoqr.moritzreis.dev" > ./website/out/CNAME
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./github-pages/tap-to-qr-website/out
+          path: ./website/out
 
   deploy:
     name: "Deploy TapToQR Website"
