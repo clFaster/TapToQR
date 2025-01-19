@@ -24,15 +24,15 @@ const CustomQr = () => {
 
     const copyToClipboard = async () => {
         const extensionSettings = await loadExtensionSettings();
-        let currentUrl = await getActiveTab() || "hallo";
-        let svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeDownloadSize, extensionSettings.displayLogo);
+        const currentUrl = await getActiveTab() || "hallo";
+        const svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeDownloadSize, extensionSettings.displayLogo);
         copyQrCodeToClipboard(svg, extensionSettings.qrCodeDownloadSize).then();
     }
 
     const downloadQrCode = async () => {
         const extensionSettings = await loadExtensionSettings();
-        let currentUrl = await getActiveTab() || "hallo";
-        let svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeDownloadSize, extensionSettings.displayLogo);
+        const currentUrl = await getActiveTab() || "hallo";
+        const svg = await generateSvgContent(currentUrl, extensionSettings.qrCodeDownloadSize, extensionSettings.displayLogo);
         downloadQrCodeAsPng(svg, extensionSettings.qrCodeDownloadSize).then();
     }
 

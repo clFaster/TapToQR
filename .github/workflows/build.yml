@@ -63,15 +63,17 @@ jobs:
           fi
 
       - name: Update Version
+        working-directory: ./browser
         run: |
           jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' package.json > temp.json && mv temp.json package.json
-          cd addon
-          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' manifest.json > temp.json && mv temp.json manifest.json
+          jq --arg version "${{steps.determine-version.outputs.VERSION}}" '.version = $version' public/manifest.json > public/temp.json && mv public/temp.json public/manifest.json
 
       - name: Install dependencies
+        working-directory: ./browser
         run: npm install
 
       - name: Lint code
+        working-directory: ./browser
         run: npm run lint
 
       - name: Webpack project

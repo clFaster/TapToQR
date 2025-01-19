@@ -18,7 +18,7 @@ export interface ExtensionSettings {
 
 export const loadExtensionSettings = async () => {
 
-    let r = await browser.storage.local.get([
+    const r = await browser.storage.local.get([
         "qrCodeSize",
         "qrCodeDownloadSize",
         "displayLogo",
