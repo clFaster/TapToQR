@@ -16,7 +16,7 @@ export const openCustomQrPage = () => {
     browser.windows.create({
         url: browser.runtime.getURL(CUSTOM_QR_WINDOW_PATH),
         type: "popup",
-        width: 400,
-        height: 600
+        width: 345,
+        height: 550,
     });
 }

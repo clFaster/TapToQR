@@ -25,6 +25,25 @@ export const OptionContainer = styled.main`
     margin: 0;
 `;
 
+export const CustomQrPageContainer = styled.main`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 3px;
+`;
+
+export const CustomQrContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    
+    form {
+        width: 80%;
+    }
+`;
+
 export const SettingsContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -143,6 +162,29 @@ export const InputContainer = styled.div`
 
     input[type="checkbox"]:hover {
         border-color: var(--secondary-color);
+    }
+
+    input[type="text"] {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid var(--primary-color);
+        border-radius: 8px;
+        background-color: var(--grey-bg-color);
+        color: var(--fg-color);
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"]:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 8px var(--secondary-color);
+    }
+
+    input[type="text"]::placeholder {
+        color: var(--fg-color);
+        opacity: 0.7;
     }
 `;
 

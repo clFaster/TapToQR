@@ -3,6 +3,7 @@ import {StrictMode} from "react";
 import CustomQr from "../../components/CustomQr/CustomQr.tsx";
 
 const rootElement = document.getElementById('root');
+
 if (rootElement) {
     createRoot(rootElement).render(
         <StrictMode>
