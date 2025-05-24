@@ -10,6 +10,10 @@ import {
   QrDataType,
   WifiData,
   ContactData,
+  EmailData,
+  TelephoneData,
+  MapsData,
+  CalendarData,
   formatQrContent,
 } from "../utils/qr-data-formatters";
 import {
@@ -26,6 +30,10 @@ interface QrContextType {
   textContent: string;
   wifiData: WifiData;
   contactData: ContactData;
+  emailData: EmailData;
+  telephoneData: TelephoneData;
+  mapsData: MapsData;
+  calendarData: CalendarData;
   qrCodeSvg: string;
 
   // State updaters
@@ -33,6 +41,13 @@ interface QrContextType {
   setTextContent: (text: string) => void;
   updateWifiData: (field: keyof WifiData, value: string) => void;
   updateContactData: (field: keyof ContactData, value: string) => void;
+  updateEmailData: (field: keyof EmailData, value: string) => void;
+  updateTelephoneData: (field: keyof TelephoneData, value: string) => void;
+  updateMapsData: (field: keyof MapsData, value: string) => void;
+  updateCalendarData: (
+    field: keyof CalendarData,
+    value: string | boolean,
+  ) => void;
 
   // Actions
   copyToClipboard: () => Promise<void>;
@@ -58,6 +73,34 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     website: "",
     nickname: "",
   });
+
+  const [emailData, setEmailData] = useState<EmailData>({
+    to: "",
+    cc: "",
+    bcc: "",
+    subject: "",
+    body: "",
+  });
+
+  const [telephoneData, setTelephoneData] = useState<TelephoneData>({
+    number: "",
+    type: "tel",
+  });
+
+  const [mapsData, setMapsData] = useState<MapsData>({
+    latitude: "",
+    longitude: "",
+    query: "",
+  });
+
+  const [calendarData, setCalendarData] = useState<CalendarData>({
+    title: "",
+    description: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    allDay: false,
+  });
   const [qrCodeSvg, setQrCodeSvg] = useState("");
   const getFormattedContent = useCallback(() => {
     const defaultMessage = "Please enter some data";
@@ -77,10 +120,47 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           return formatQrContent(QrDataType.CONTACT, contactData);
         }
         return defaultMessage;
+      case QrDataType.EMAIL:
+        // Only format if at least the email address is present
+        if (emailData.to) {
+          return formatQrContent(QrDataType.EMAIL, emailData);
+        }
+        return defaultMessage;
+      case QrDataType.TELEPHONE:
+        // Only format if phone number is present
+        if (telephoneData.number) {
+          return formatQrContent(QrDataType.TELEPHONE, telephoneData);
+        }
+        return defaultMessage;
+      case QrDataType.MAPS:
+        // Only format if coordinates or query is present
+        if ((mapsData.latitude && mapsData.longitude) || mapsData.query) {
+          return formatQrContent(QrDataType.MAPS, mapsData);
+        }
+        return defaultMessage;
+      case QrDataType.CALENDAR:
+        // Only format if required fields are present
+        if (
+          calendarData.title &&
+          calendarData.startDate &&
+          calendarData.endDate
+        ) {
+          return formatQrContent(QrDataType.CALENDAR, calendarData);
+        }
+        return defaultMessage;
       default:
         return textContent || defaultMessage;
     }
-  }, [dataType, textContent, wifiData, contactData]);
+  }, [
+    dataType,
+    textContent,
+    wifiData,
+    contactData,
+    emailData,
+    telephoneData,
+    mapsData,
+    calendarData,
+  ]);
 
   const copyToClipboard = async () => {
     const extensionSettings = await loadExtensionSettings();
@@ -123,6 +203,37 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }));
   };
 
+  const updateEmailData = (field: keyof EmailData, value: string) => {
+    setEmailData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const updateTelephoneData = (field: keyof TelephoneData, value: string) => {
+    setTelephoneData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const updateMapsData = (field: keyof MapsData, value: string) => {
+    setMapsData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const updateCalendarData = (
+    field: keyof CalendarData,
+    value: string | boolean,
+  ) => {
+    setCalendarData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   // Generate QR code SVG when relevant data changes
   useEffect(() => {
     let isMounted = true;
@@ -133,7 +244,7 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         const qrContent = getFormattedContent();
         const svg = await generateSvgContent(
           qrContent,
-          400,
+          320,
           extensionSettings.displayLogo,
         );
 
@@ -158,6 +269,10 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     textContent,
     wifiData,
     contactData,
+    emailData,
+    telephoneData,
+    mapsData,
+    calendarData,
     qrCodeSvg,
 
     // State updaters
@@ -165,6 +280,10 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setTextContent,
     updateWifiData,
     updateContactData,
+    updateEmailData,
+    updateTelephoneData,
+    updateMapsData,
+    updateCalendarData,
 
     // Actions
     copyToClipboard,

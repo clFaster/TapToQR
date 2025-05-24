@@ -18,6 +18,10 @@ import QrTypeSelector from "./QrTypes/QrTypeSelector.tsx";
 import TextQrForm from "./QrTypes/TextQrForm.tsx";
 import WifiQrForm from "./QrTypes/WifiQrForm.tsx";
 import ContactQrForm from "./QrTypes/ContactQrForm.tsx";
+import EmailQrForm from "./QrTypes/EmailQrForm.tsx";
+import TelephoneQrForm from "./QrTypes/TelephoneQrForm.tsx";
+import MapsQrForm from "./QrTypes/MapsQrForm.tsx";
+import CalendarQrForm from "./QrTypes/CalendarQrForm.tsx";
 
 // Component that uses the QR context
 const QrContent = () => {
@@ -37,6 +41,14 @@ const QrContent = () => {
         return <WifiQrForm />;
       case QrDataType.CONTACT:
         return <ContactQrForm />;
+      case QrDataType.EMAIL:
+        return <EmailQrForm />;
+      case QrDataType.TELEPHONE:
+        return <TelephoneQrForm />;
+      case QrDataType.MAPS:
+        return <MapsQrForm />;
+      case QrDataType.CALENDAR:
+        return <CalendarQrForm />;
       default:
         return null;
     }

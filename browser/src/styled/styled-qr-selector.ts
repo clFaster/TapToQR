@@ -2,18 +2,19 @@ import styled from "styled-components";
 
 export const TabContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 20px;
 `;
 
 export const Tab = styled.button<{ active: boolean }>`
-  padding: 10px 20px;
+  padding: 10px 15px;
   background: none;
   border: none;
   color: ${(props) =>
     props.active ? "var(--primary-color)" : "var(--text-color)"};
-  font-size: 16px;
+  font-size: 14px;
   font-weight: ${(props) => (props.active ? "bold" : "normal")};
   cursor: pointer;
   position: relative;

@@ -23,6 +23,6 @@ export const openCustomQrPage = () => {
     url: browser.runtime.getURL(CUSTOM_QR_WINDOW_PATH),
     type: "popup",
     width: 950,
-    height: 750,
+    height: 720,
   });
 };

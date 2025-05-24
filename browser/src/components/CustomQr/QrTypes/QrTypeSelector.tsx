@@ -29,6 +29,34 @@ const QrTypeSelector: React.FC = () => {
       >
         {QrDataType.CONTACT}
       </Tab>
+      <Tab
+        active={dataType === QrDataType.EMAIL}
+        onClick={() => setDataType(QrDataType.EMAIL)}
+        type="button"
+      >
+        {QrDataType.EMAIL}
+      </Tab>
+      <Tab
+        active={dataType === QrDataType.TELEPHONE}
+        onClick={() => setDataType(QrDataType.TELEPHONE)}
+        type="button"
+      >
+        {QrDataType.TELEPHONE}
+      </Tab>
+      <Tab
+        active={dataType === QrDataType.MAPS}
+        onClick={() => setDataType(QrDataType.MAPS)}
+        type="button"
+      >
+        {QrDataType.MAPS}
+      </Tab>
+      <Tab
+        active={dataType === QrDataType.CALENDAR}
+        onClick={() => setDataType(QrDataType.CALENDAR)}
+        type="button"
+      >
+        {QrDataType.CALENDAR}
+      </Tab>
     </TabContainer>
   );
 };

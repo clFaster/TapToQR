@@ -23,7 +23,7 @@ export const CustomQrCodeContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 85%;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 
   svg {
@@ -71,24 +71,22 @@ export const CustomQrContainer = styled.div`
 export const FormSideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 48%;
+  width: 60%;
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
-  
-  /* Better scrollbar styling */
+
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) transparent;
-  
-  /* For WebKit browsers (Chrome, Safari) */
+
   &::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 4px;
@@ -100,8 +98,12 @@ export const QrSideContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 48%;
-  height: 100%;
+  width: 39%;
+  height: 75%;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
 `;
 
 export const SettingsContainer = styled.div`
@@ -139,18 +141,46 @@ export const InputContainer = styled.div`
   align-items: center;
   gap: 15px;
   width: 100%;
-  margin-bottom: 8px; /* Add bottom margin for spacing */
-  
-  input[type="text"], 
-  input[type="email"], 
+  margin-bottom: 8px;
+
+  input[type="text"],
+  input[type="email"],
   input[type="password"],
+  input[type="date"],
+  input[type="datetime-local"],
   textarea {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--border-color, #ccc);
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box; /* Ensure padding is included in width */
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: var(--grey-bg-color);
+    color: var(--fg-color);
+    outline: none;
+    transition:
+      border-color 0.3s,
+      box-shadow 0.3s,
+      opacity 0.3s,
+      background-color 0.3s;
+    margin-bottom: 12px;
+
+    &:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 8px var(--secondary-color);
+    }
+
+    &::placeholder {
+      color: var(--fg-color);
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      background-color: rgba(43, 44, 40, 0.8);
+      border-color: #555;
+      cursor: not-allowed;
+      position: relative;
+    }
   }
 
   input[type="range"] {
@@ -206,64 +236,59 @@ export const InputContainer = styled.div`
 
   input[type="checkbox"] {
     position: relative;
-    width: 40px;
-    height: 40px;
-    margin-top: 15px;
-    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    margin-right: 10px;
     appearance: none;
     background: var(--grey-bg-color);
     border: 2px solid var(--primary-color);
     border-radius: 4px;
     cursor: pointer;
-    transition:
-      background 0.2s,
-      border-color 0.2s;
+    transition: all 0.2s ease-in-out;
+
+    &:checked {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 3px;
+        width: 6px;
+        height: 12px;
+        border: solid var(--fg-color);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:hover {
+      border-color: var(--secondary-color);
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      border-color: var(--secondary-color);
+      box-shadow: 0 0 8px var(--secondary-color);
+    }
   }
 
-  input[type="checkbox"]:checked {
-    background: var(--primary-color);
-    border-color: var(--secondary-color);
-  }
+  // Custom styling for date and datetime-local inputs
+  input[type="date"],
+  input[type="datetime-local"] {
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(var(--calendar-icon-invert));
+      cursor: pointer;
+      opacity: 0.7;
+      padding: 4px;
+      margin-right: -4px;
 
-  input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    left: 11px;
-    top: 3px;
-    width: 10px;
-    height: 20px;
-    border: solid var(--fg-color);
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
-  }
-
-  input[type="checkbox"]:hover {
-    border-color: var(--secondary-color);
-  }
-
-  input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid var(--primary-color);
-    border-radius: 8px;
-    background-color: var(--grey-bg-color);
-    color: var(--fg-color);
-    outline: none;
-    transition:
-      border-color 0.3s,
-      box-shadow 0.3s;
-    margin-bottom: 12px;
-  }
-
-  input[type="text"]:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 8px var(--secondary-color);
-  }
-
-  input[type="text"]::placeholder {
-    color: var(--fg-color);
-    opacity: 0.7;
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 `;
 
@@ -292,8 +317,6 @@ export const Toast = styled.div`
     transform: translateX(-50%) translateY(0);
   }
 `;
-
-// Adding styled components for the data type selector and form fields
 
 export const SelectContainer = styled.div`
   display: flex;
