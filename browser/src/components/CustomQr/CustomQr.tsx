@@ -19,7 +19,7 @@ import {
   generateSvgContent,
 } from "../../utils/qr-code-gen.ts";
 import { openExtensionSettingsPage } from "../../utils/browser-runtime.ts";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   QrDataType,
   WifiData,
@@ -47,7 +47,6 @@ const CustomQr = () => {
     website: "",
   };
 
-  // State for QR code data type and content
   const [dataType, setDataType] = useState<QrDataType>(QrDataType.CLEAR_TEXT);
   const [textContent, setTextContent] = useState(TEXT_PLACEHOLDER);
   const [wifiData, setWifiData] = useState<WifiData>(WIFI_PLACEHOLDER);
@@ -55,8 +54,7 @@ const CustomQr = () => {
     useState<ContactData>(CONTACT_PLACEHOLDER);
   const [qrCodeSvg, setQrCodeSvg] = useState("");
 
-  // Get the formatted content based on the selected data type
-  const getFormattedContent = () => {
+  const getFormattedContent = useCallback(() => {
     switch (dataType) {
       case QrDataType.CLEAR_TEXT:
         return textContent || TEXT_PLACEHOLDER;
@@ -67,7 +65,7 @@ const CustomQr = () => {
       default:
         return textContent;
     }
-  };
+  }, [dataType, textContent, wifiData, contactData]);
 
   const copyToClipboard = async () => {
     const extensionSettings = await loadExtensionSettings();
@@ -121,7 +119,7 @@ const CustomQr = () => {
         },
       );
     });
-  }, [dataType, textContent, wifiData, contactData, getFormattedContent]);
+  }, [getFormattedContent]);
 
   // Render form based on selected data type
   const renderQrForm = () => {

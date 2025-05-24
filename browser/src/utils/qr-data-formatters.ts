@@ -1,4 +1,3 @@
-// QR code data type definitions and formatters
 export enum QrDataType {
   CLEAR_TEXT = "Clear Text",
   WIFI = "Wi-Fi",
@@ -20,32 +19,26 @@ export interface ContactData {
   website?: string;
 }
 
-// Function to format Wi-Fi data according to the standard format
 export const formatWifiData = (data: WifiData): string => {
   return `WIFI:T:${data.securityType};S:${data.ssid};P:${data.password};;`;
 };
 
-// Function to format contact data in vCard format
 export const formatContactData = (data: ContactData): string => {
-  let vCard = "BEGIN:VCARD\nVERSION:3.0\n";
+  let meCard = "MECARD:";
 
-  // Add name
-  vCard += `FN:${data.name}\n`;
-  vCard += `N:${data.name};;;\n`;
+  meCard += `N:${data.name};`;
 
-  // Add contact details
-  if (data.phone) vCard += `TEL:${data.phone}\n`;
-  if (data.email) vCard += `EMAIL:${data.email}\n`;
-  if (data.organization) vCard += `ORG:${data.organization}\n`;
-  if (data.title) vCard += `TITLE:${data.title}\n`;
-  if (data.website) vCard += `URL:${data.website}\n`;
+  if (data.phone) meCard += `TEL:${data.phone};`;
+  if (data.email) meCard += `EMAIL:${data.email};`;
+  if (data.organization) meCard += `ORG:${data.organization};`;
+  if (data.title) meCard += `TITLE:${data.title};`;
+  if (data.website) meCard += `URL:${data.website};`;
 
-  vCard += "END:VCARD";
+  meCard += ";";
 
-  return vCard;
+  return meCard;
 };
 
-// Function to format QR code content based on the selected data type
 export const formatQrContent = (
   dataType: QrDataType,
   data: string | WifiData | ContactData,
