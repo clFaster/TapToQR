@@ -1,16 +1,10 @@
 import React from "react";
-import { ContactData } from "../../../utils/qr-data-formatters.ts";
 import { CompactFormField, InputContainer } from "../../../styled/styled.ts";
+import { useQrContext } from "../../../contexts/QrContext.tsx";
 
-interface ContactQrFormProps {
-  contactData: ContactData;
-  updateContactData: (field: keyof ContactData, value: string) => void;
-}
+const ContactQrForm: React.FC = () => {
+  const { contactData, updateContactData } = useQrContext();
 
-const ContactQrForm: React.FC<ContactQrFormProps> = ({
-  contactData,
-  updateContactData,
-}) => {
   return (
     <>
       <CompactFormField>

@@ -360,7 +360,7 @@ export const RadioGroup = styled.div`
     font-size: 15px;
     padding: 6px 0;
     transition: color 0.2s;
-    
+
     &:hover {
       color: var(--secondary-color);
     }
@@ -377,16 +377,16 @@ export const RadioGroup = styled.div`
     background-color: var(--grey-bg-color);
     border: 2px solid var(--primary-color);
     border-radius: 50%;
-    transition: 
+    transition:
       border-color 0.2s,
       background-color 0.2s,
       transform 0.2s;
     transform-origin: center;
-    
+
     &:checked {
       border-color: var(--secondary-color);
       background-color: var(--primary-color);
-      
+
       &::after {
         content: "";
         position: absolute;
@@ -399,10 +399,37 @@ export const RadioGroup = styled.div`
         border-radius: 50%;
       }
     }
-    
+
     &:hover {
       border-color: var(--secondary-color);
       transform: scale(1.05);
     }
+  }
+`;
+
+export const StyledTextarea = styled.textarea`
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  background-color: var(--grey-bg-color);
+  color: var(--fg-color);
+  outline: none;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  margin-bottom: 12px;
+  min-height: 100px;
+  resize: vertical;
+
+  &:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 8px var(--secondary-color);
+  }
+
+  &::placeholder {
+    color: var(--fg-color);
+    opacity: 0.7;
   }
 `;

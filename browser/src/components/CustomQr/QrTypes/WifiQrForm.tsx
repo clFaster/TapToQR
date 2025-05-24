@@ -1,20 +1,14 @@
 import React from "react";
-import { WifiData } from "../../../utils/qr-data-formatters.ts";
 import {
   CompactFormField,
   InputContainer,
   RadioGroup,
 } from "../../../styled/styled.ts";
+import { useQrContext } from "../../../contexts/QrContext.tsx";
 
-interface WifiQrFormProps {
-  wifiData: WifiData;
-  updateWifiData: (field: keyof WifiData, value: string) => void;
-}
+const WifiQrForm: React.FC = () => {
+  const { wifiData, updateWifiData } = useQrContext();
 
-const WifiQrForm: React.FC<WifiQrFormProps> = ({
-  wifiData,
-  updateWifiData,
-}) => {
   return (
     <>
       <CompactFormField>
