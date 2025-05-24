@@ -1,6 +1,6 @@
 import React from "react";
 import { QrDataType } from "../../../utils/qr-data-formatters.ts";
-import { CompactFormField, SelectContainer } from "../../../styled/styled.ts";
+import { TabContainer, Tab } from "../../../styled/styled-qr-selector.ts";
 
 interface QrTypeSelectorProps {
   dataType: QrDataType;
@@ -12,22 +12,29 @@ const QrTypeSelector: React.FC<QrTypeSelectorProps> = ({
   setDataType,
 }) => {
   return (
-    <CompactFormField>
-      <label htmlFor="dataType">QR Code Type</label>
-      <SelectContainer>
-        <select
-          id="dataType"
-          value={dataType}
-          onChange={(e) => setDataType(e.target.value as QrDataType)}
-        >
-          {Object.values(QrDataType).map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </SelectContainer>
-    </CompactFormField>
+    <TabContainer>
+      <Tab 
+        active={dataType === QrDataType.CLEAR_TEXT}
+        onClick={() => setDataType(QrDataType.CLEAR_TEXT)}
+        type="button"
+      >
+        {QrDataType.CLEAR_TEXT}
+      </Tab>
+      <Tab 
+        active={dataType === QrDataType.WIFI}
+        onClick={() => setDataType(QrDataType.WIFI)}
+        type="button"
+      >
+        {QrDataType.WIFI}
+      </Tab>
+      <Tab 
+        active={dataType === QrDataType.CONTACT}
+        onClick={() => setDataType(QrDataType.CONTACT)}
+        type="button"
+      >
+        {QrDataType.CONTACT}
+      </Tab>
+    </TabContainer>
   );
 };
 

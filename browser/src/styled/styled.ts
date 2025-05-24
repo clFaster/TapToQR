@@ -92,8 +92,8 @@ export const SettingsContainer = styled.div`
   border-radius: 12px;
   padding: 20px;
   width: 500px;
-  background-color: var(--grey-bg-color, #2b2c28);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--grey-bg-color);
+  box-shadow: 0 4px 8px var(--shadow-color);
   margin: 0 auto;
 
   form {
@@ -244,7 +244,7 @@ export const Toast = styled.div`
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--primary-color, #339989);
+  background-color: var(--primary-color);
   color: var(--fg-color);
   padding: 10px 20px;
   border-radius: 8px;
@@ -342,8 +342,6 @@ export const FormSection = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 15px 0;
-  border-top: 1px solid var(--primary-color);
-  margin-top: 5px;
   overflow-y: auto;
 `;
 

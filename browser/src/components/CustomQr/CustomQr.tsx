@@ -47,6 +47,7 @@ const CustomQr = () => {
     website: "",
   };
 
+  // Initialize the state with a default value
   const [dataType, setDataType] = useState<QrDataType>(QrDataType.CLEAR_TEXT);
   const [textContent, setTextContent] = useState(TEXT_PLACEHOLDER);
   const [wifiData, setWifiData] = useState<WifiData>(WIFI_PLACEHOLDER);
@@ -93,7 +94,6 @@ const CustomQr = () => {
     openExtensionSettingsPage().then();
   };
 
-  // Update Wi-Fi data
   const updateWifiData = (field: keyof WifiData, value: string) => {
     setWifiData((prev) => ({
       ...prev,
@@ -102,26 +102,42 @@ const CustomQr = () => {
     }));
   };
 
-  // Update Contact data
   const updateContactData = (field: keyof ContactData, value: string) => {
     setContactData((prev) => ({
       ...prev,
       [field]: value,
     }));
   };
+  
+  // Generate QR code SVG when relevant data changes
   useEffect(() => {
-    loadExtensionSettings().then((extensionSettings) => {
-      const qrContent = getFormattedContent();
-      // Set QR code size to 400px for better display in the side layout
-      generateSvgContent(qrContent, 400, extensionSettings.displayLogo).then(
-        (x) => {
-          setQrCodeSvg(x);
-        },
-      );
-    });
+    let isMounted = true;
+    
+    const generateQrCode = async () => {
+      try {
+        const extensionSettings = await loadExtensionSettings();
+        const qrContent = getFormattedContent();
+        const svg = await generateSvgContent(
+          qrContent,
+          400,
+          extensionSettings.displayLogo
+        );
+        
+        if (isMounted) {
+          setQrCodeSvg(svg);
+        }
+      } catch (error) {
+        console.error("Error generating QR code:", error);
+      }
+    };
+    
+    generateQrCode();
+    
+    return () => {
+      isMounted = false;
+    };
   }, [getFormattedContent]);
 
-  // Render form based on selected data type
   const renderQrForm = () => {
     switch (dataType) {
       case QrDataType.CLEAR_TEXT:

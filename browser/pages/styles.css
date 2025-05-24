@@ -5,6 +5,9 @@
   --grey-bg-color: #2b2c28;
   --primary-color: #339989;
   --secondary-color: #7de2d1;
+  --border-color: #444;
+  --text-color: #ececec;
+  --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
 html {

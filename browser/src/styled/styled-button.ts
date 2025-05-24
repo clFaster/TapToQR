@@ -14,7 +14,7 @@ export const Button = styled.button`
   height: 50px;
   border-radius: 15px;
   color: var(--fg-color);
-  background-color: var(--primary-color, #339989);
+  background-color: var(--primary-color);
   cursor: pointer;
   transition:
     background-color 0.2s,
@@ -24,7 +24,7 @@ export const Button = styled.button`
   align-items: center;
 
   &:hover {
-    background-color: var(--secondary-color, #7de2d1);
+    background-color: var(--secondary-color);
     transform: scale(1.1);
   }
 `;
