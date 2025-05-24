@@ -14,9 +14,8 @@ export interface ContactData {
   name: string;
   phone: string;
   email: string;
-  organization?: string;
-  title?: string;
   website?: string;
+  nickname?: string;
 }
 
 export const formatWifiData = (data: WifiData): string => {
@@ -30,9 +29,8 @@ export const formatContactData = (data: ContactData): string => {
 
   if (data.phone) meCard += `TEL:${data.phone};`;
   if (data.email) meCard += `EMAIL:${data.email};`;
-  if (data.organization) meCard += `ORG:${data.organization};`;
-  if (data.title) meCard += `TITLE:${data.title};`;
   if (data.website) meCard += `URL:${data.website};`;
+  if (data.nickname) meCard += `NICKNAME:${data.nickname};`;
 
   meCard += ";";
 

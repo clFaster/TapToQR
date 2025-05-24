@@ -65,6 +65,7 @@ export const CustomQrContainer = styled.div`
   height: calc(100% - 90px); /* Subtract header height */
   padding: 0;
   box-sizing: border-box;
+  gap: 20px; /* Add space between the form and QR display */
 `;
 
 export const FormSideContainer = styled.div`
@@ -73,7 +74,25 @@ export const FormSideContainer = styled.div`
   width: 48%;
   height: 100%;
   overflow-y: auto;
-  padding-right: 10px;
+  box-sizing: border-box;
+  
+  /* Better scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+  
+  /* For WebKit browsers (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 4px;
+  }
 `;
 
 export const QrSideContainer = styled.div`
@@ -120,6 +139,19 @@ export const InputContainer = styled.div`
   align-items: center;
   gap: 15px;
   width: 100%;
+  margin-bottom: 8px; /* Add bottom margin for spacing */
+  
+  input[type="text"], 
+  input[type="email"], 
+  input[type="password"],
+  textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color, #ccc);
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
 
   input[type="range"] {
     -webkit-appearance: none;
@@ -323,6 +355,7 @@ export const FormField = styled.div`
 
 export const CompactFormField = styled(FormField)`
   margin-bottom: 10px;
+  width: calc(100% - 8px); /* Account for scrollbar width */
 
   label {
     font-size: 14px;
@@ -330,9 +363,12 @@ export const CompactFormField = styled(FormField)`
   }
 
   ${InputContainer} {
-    input[type="text"] {
+    input[type="text"],
+    input[type="email"],
+    textarea {
       padding: 8px 10px;
       margin-bottom: 8px;
+      width: 100%;
     }
   }
 `;

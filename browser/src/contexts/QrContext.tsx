@@ -55,9 +55,8 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     name: "",
     phone: "",
     email: "",
-    organization: "",
-    title: "",
     website: "",
+    nickname: "",
   });
   const [qrCodeSvg, setQrCodeSvg] = useState("");
   const getFormattedContent = useCallback(() => {
