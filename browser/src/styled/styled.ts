@@ -206,3 +206,86 @@ export const Toast = styled.div`
     pointer-events: none;
     z-index: 1000;
 `;
+
+// Adding styled components for the data type selector and form fields
+
+export const SelectContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 15px;
+    
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid var(--primary-color);
+        border-radius: 8px;
+        background-color: var(--grey-bg-color);
+        color: var(--fg-color);
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+    
+    select:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 8px var(--secondary-color);
+    }
+    
+    option {
+        background-color: var(--grey-bg-color);
+        color: var(--fg-color);
+    }
+`;
+
+export const FormContainer = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+`;
+
+export const FormField = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+    
+    label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: var(--fg-color);
+    }
+`;
+
+export const FormSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid var(--primary-color);
+    margin-top: 5px;
+`;
+
+export const RadioGroup = styled.div`
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+    
+    label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+    }
+    
+    input[type="radio"] {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+    }
+`;
