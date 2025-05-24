@@ -355,16 +355,54 @@ export const RadioGroup = styled.div`
   label {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
     font-size: 15px;
-    padding: 5px 0;
+    padding: 6px 0;
+    transition: color 0.2s;
+    
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 
   input[type="radio"] {
+    position: relative;
+    appearance: none;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
-    margin: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0 2px;
+    padding: 0;
+    background-color: var(--grey-bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    transition: 
+      border-color 0.2s,
+      background-color 0.2s,
+      transform 0.2s;
+    transform-origin: center;
+    
+    &:checked {
+      border-color: var(--secondary-color);
+      background-color: var(--primary-color);
+      
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        background-color: var(--fg-color);
+        border-radius: 50%;
+      }
+    }
+    
+    &:hover {
+      border-color: var(--secondary-color);
+      transform: scale(1.05);
+    }
   }
 `;
