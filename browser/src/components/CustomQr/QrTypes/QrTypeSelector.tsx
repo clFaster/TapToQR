@@ -9,11 +9,11 @@ const QrTypeSelector: React.FC = () => {
   return (
     <TabContainer>
       <Tab
-        active={dataType === QrDataType.CLEAR_TEXT}
-        onClick={() => setDataType(QrDataType.CLEAR_TEXT)}
+        active={dataType === QrDataType.TEXT}
+        onClick={() => setDataType(QrDataType.TEXT)}
         type="button"
       >
-        {QrDataType.CLEAR_TEXT}
+        {QrDataType.TEXT}
       </Tab>
       <Tab
         active={dataType === QrDataType.WIFI}

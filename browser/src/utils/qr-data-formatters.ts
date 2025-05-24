@@ -1,5 +1,5 @@
 export enum QrDataType {
-  CLEAR_TEXT = "Clear Text",
+  TEXT = "Text",
   WIFI = "Wi-Fi",
   CONTACT = "Contact",
 }
@@ -44,7 +44,7 @@ export const formatQrContent = (
   data: string | WifiData | ContactData,
 ): string => {
   switch (dataType) {
-    case QrDataType.CLEAR_TEXT:
+    case QrDataType.TEXT:
       return data as string;
 
     case QrDataType.WIFI:

@@ -44,7 +44,7 @@ interface QrContextType {
 const QrContext = createContext<QrContextType | null>(null);
 
 export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [dataType, setDataType] = useState<QrDataType>(QrDataType.CLEAR_TEXT);
+  const [dataType, setDataType] = useState<QrDataType>(QrDataType.TEXT);
   const [textContent, setTextContent] = useState("");
   const [wifiData, setWifiData] = useState<WifiData>({
     ssid: "",
@@ -64,7 +64,7 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const defaultMessage = "Please enter some data";
 
     switch (dataType) {
-      case QrDataType.CLEAR_TEXT:
+      case QrDataType.TEXT:
         return textContent || defaultMessage;
       case QrDataType.WIFI:
         // Only format if at least one field has content

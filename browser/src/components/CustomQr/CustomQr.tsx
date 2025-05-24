@@ -31,7 +31,7 @@ const QrContent = () => {
 
   const renderQrForm = () => {
     switch (dataType) {
-      case QrDataType.CLEAR_TEXT:
+      case QrDataType.TEXT:
         return <TextQrForm />;
       case QrDataType.WIFI:
         return <WifiQrForm />;
