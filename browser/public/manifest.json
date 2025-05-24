@@ -11,10 +11,7 @@
     "32": "img/ic_TapToQR_32.png",
     "16": "img/ic_TapToQR_16.png"
   },
-  "permissions": [
-    "activeTab",
-    "storage"
-  ],
+  "permissions": ["activeTab", "storage"],
 
   "web_accessible_resources": [
     {
