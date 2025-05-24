@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
   plugins: [
@@ -8,32 +8,32 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'public/manifest.json',
-          dest: '.',
+          src: "public/manifest.json",
+          dest: ".",
         },
         {
-          src: 'public/img/*',
-          dest: 'img/.',
-        }
+          src: "public/img/*",
+          dest: "img/.",
+        },
       ],
     }),
   ],
 
-  base: '',
+  base: "",
 
   build: {
-    outDir: 'build',
+    outDir: "build",
     rollupOptions: {
       input: {
-        popup: './pages/popup.html',
-        options: './pages/options.html',
-        customQr: './pages/customQr.html',
+        popup: "./pages/popup.html",
+        options: "./pages/options.html",
+        customQr: "./pages/customQr.html",
       },
       output: {
-        entryFileNames: 'pages/[name].js',
-        chunkFileNames: 'chunks/[name].js',
-        assetFileNames: 'assets/[name].[ext]',
-      }
+        entryFileNames: "pages/[name].js",
+        chunkFileNames: "chunks/[name].js",
+        assetFileNames: "assets/[name].[ext]",
+      },
     },
   },
 });
