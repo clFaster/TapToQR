@@ -214,6 +214,9 @@ jobs:
     runs-on: ubuntu-latest
     name: "Create TapToQR Edge Release"
     if: ${{ github.event.inputs.publish-edge == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
     needs:
       [
         build
