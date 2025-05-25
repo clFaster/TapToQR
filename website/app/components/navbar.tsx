@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BrowserStoreLink } from "./browser-store-link";
 
 export default function Navbar() {
   return (
@@ -35,15 +36,11 @@ export default function Navbar() {
           >
             GitHub
           </Link>
-        </nav>
+        </nav>{" "}
         <div className="flex items-center gap-2">
-          <Link
-            href="https://addons.mozilla.org/addon/taptoqr/"
-            target="_blank"
-            className="hidden sm:flex items-center justify-center px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-md transition-colors"
-          >
-            Get Extension
-          </Link>
+          <div className="hidden sm:block">
+            <BrowserStoreLink buttonStyle={true} />
+          </div>
         </div>
       </div>
     </header>
