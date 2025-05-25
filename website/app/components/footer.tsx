@@ -37,7 +37,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 border-t border-border pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} TapToQR. All rights reserved.
+            © {new Date().getFullYear()} Moritz Reis
           </p>
         </div>
       </div>
