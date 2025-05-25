@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import { BrowserStoreLink } from "./components/browser-store-link";
 
 export default function Home() {
   return (
@@ -32,49 +32,8 @@ export default function Home() {
               calendar events using a clean, intuitive browser extension with
               quick actions and personalization options.
             </p>
-
             {/* Download Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-              <Link
-                href="https://addons.mozilla.org/addon/taptoqr/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/store/get-the-addon-fx-apr-2020.svg"
-                  alt="Get TapToQR for Firefox"
-                  width={172}
-                  height={60}
-                  className="h-[60px] w-auto transition-transform hover:scale-105"
-                />
-              </Link>
-              <Link
-                href="https://chromewebstore.google.com/detail/taptoqr/ommdikomjapdndpedljobeecepeopjmp"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/store/chrome-web-store.svg"
-                  alt="Get TapToQR for Chrome"
-                  width={172}
-                  height={60}
-                  className="h-[60px] w-auto transition-transform hover:scale-105"
-                />
-              </Link>
-              <Link
-                href="https://microsoftedge.microsoft.com/addons/detail/taptoqr/bkfofjhemmkeekmaimpgbndkddmknbga"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/store/microsoft-store-en-us-light.svg"
-                  alt="Get TapToQR for Edge"
-                  width={172}
-                  height={60}
-                  className="h-[60px] w-auto transition-transform hover:scale-105"
-                />
-              </Link>
-            </div>
+            <BrowserStoreLink showAll={true} />
           </div>
         </section>
 

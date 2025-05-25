@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       { url: "/ic_TapToQR_32.png", sizes: "32x32" },
       { url: "/ic_TapToQR_48.png", sizes: "48x48" },
       { url: "/ic_TapToQR_64.png", sizes: "64x64" },
-      { url: "/ic_TapToQR.svg", type: "image/svg+xml" }
+      { url: "/ic_TapToQR.svg", type: "image/svg+xml" },
     ],
     apple: "/ic_TapToQR_32.png",
     shortcut: "/ic_TapToQR_32.png",
@@ -34,7 +34,8 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {  return (
+}>) {
+  return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
