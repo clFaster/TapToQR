@@ -42,27 +42,26 @@ Whether you're a developer, a power user, or just looking to streamline cross-de
 
 ## Screenshots
 
-| TapToQR in Action                                                                                                                                                                                        |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TapToQR in Action |
+|-------------------|
 | Easily access the current page on your phone with a single scan. **TapToQR** instantly generates a QR code for the active browser tab, letting you open the same page on your mobile device in seconds-no copy-pasting required. Just scan and go. |
-| ![TapToQR Logo](./website/public/store/TapToQr-InAction.png)                                                                                                                                                        |
+| ![TapToQR Logo](./website/public/store/TapToQr-InAction.png) |
 
 
 | Generate a QR Code Instantly|
-|---------------------------------------------------------------------------------------------------------------------|
+|-----------------------------|
 | Click the **TapToQR** icon in your browser toolbar to instantly generate a QR code for the current webpage. |
-| ![TapToQR Logo](./website/public/store/TapToQr-Extension.png)                                                       |
+| ![TapToQR Logo](./website/public/store/TapToQr-Extension.png) |
 
-| Customize Your QR Code Experience                                                                                                            |
-|---------------------------------------------------------------------------------------------------------------------|
-| In the settings panel, you can adjust the preview size of the QR code shown in the popup and configure the default resolution for downloads. You can also toggle the embedded logo on or off to match your preferences.
- |
-| ![TapToQR Logo](./website/public/store/TapToQr-Settings.png)                                                       |
+| Customize Your QR Code Experience |
+|-----------------------------------|
+| In the settings panel, you can adjust the preview size of the QR code shown in the popup and configure the default resolution for downloads. You can also toggle the embedded logo on or off to match your preferences. |
+| ![TapToQR Logo](./website/public/store/TapToQr-Settings.png) |
 
-| Generate what you need                                                                                                            |
-|---------------------------------------------------------------------------------------------------------------------|
+| Generate what you need |
+|------------------------|
 | With the **TapToQR** browser extension, you can generate custom QR codes containing various content types, such as calendar events, using a simple and intuitive interface. |
-| ![TapToQR Logo](./website/public/store/TapToQr-CustomQr.png)                                                       |
+| ![TapToQR Logo](./website/public/store/TapToQr-CustomQr.png) |
 
 ## License
 
