@@ -10,10 +10,10 @@ This website is built with [Next.js](https://nextjs.org) and [TailwindCSS](https
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run the development server
-npm run dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view the site in your browser.
@@ -22,10 +22,10 @@ Open [http://localhost:3000](http://localhost:3000) to view the site in your bro
 
 ```bash
 # Build for production
-npm run build
+pnpm build
 
 # Start the production server
-npm run start
+pnpm start
 ```
 
 ## Repository

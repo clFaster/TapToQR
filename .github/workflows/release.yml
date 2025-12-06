@@ -199,7 +199,7 @@ jobs:
 
       - name: "Setup Google Webstore CLI"
         run: |
-          npm install -g chrome-webstore-upload-cli
+          pnpm install -g chrome-webstore-upload-cli
 
       - name: "Upload to Chrome Webstore"
         run: |-

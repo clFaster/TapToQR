@@ -6,6 +6,7 @@
   "author": "Moritz Reis",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "dev": "vite build --watch",
     "start:firefox": "web-ext run --start-url https://mozilla.org --browser-console --source-dir build",
