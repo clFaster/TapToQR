@@ -179,6 +179,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "Create TapToQR Chrome Release"
     if: ${{ github.event.inputs.publish-chrome == 'true' }}
+    permissions:
+      contents: read
     needs:
       [
         build
