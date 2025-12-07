@@ -39,7 +39,7 @@ export default function Home() {
               </p>
             </div>
             {/* Download Buttons */}
-            <div className="w-full max-w-md">
+            <div className="w-full">
               <BrowserStoreLink showAll={true} />
             </div>
           </div>
