@@ -62,7 +62,7 @@ jobs:
         run: echo "taptoqr.moritzreis.dev" > ./website/out/CNAME
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./website/out
 
