@@ -6,11 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/browser"
-    schedule:
-      interval: "weekly"
-  - package-ecosystem: "npm"
-    directory: "/website"
+    directory: "/"
     schedule:
       interval: "weekly"
   - package-ecosystem: "github-actions"
