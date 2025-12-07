@@ -87,32 +87,32 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3">
               <FeatureCard
-                icon={<Icons.OneClick className="h-6 w-6" />}
+                icon={<Icons.OneClick className="text-3xl" />}
                 title="One-Click QR Generation"
                 description="Click the toolbar icon to instantly generate a QR code for the active tab."
               />
               <FeatureCard
-                icon={<Icons.CustomContent className="h-6 w-6" />}
+                icon={<Icons.CustomContent className="text-3xl" />}
                 title="Custom Content Support"
                 description="Encode URLs, plain text, calendar events, and more."
               />
               <FeatureCard
-                icon={<Icons.MobileFriendly className="h-6 w-6" />}
+                icon={<Icons.MobileFriendly className="text-3xl" />}
                 title="Mobile-Friendly Sharing"
                 description="Open links on your phone instantly by scanning the code—no copy-paste needed."
               />
               <FeatureCard
-                icon={<Icons.QuickActions className="h-6 w-6" />}
+                icon={<Icons.QuickActions className="text-3xl" />}
                 title="Quick Actions"
                 description="Download, copy, or customize the QR code with built-in controls."
               />
               <FeatureCard
-                icon={<Icons.Personalization className="h-6 w-6" />}
+                icon={<Icons.Personalization className="text-3xl" />}
                 title="Personalization Options"
                 description="Set your preferred QR code preview size, download resolution, and toggle logo visibility."
               />
               <FeatureCard
-                icon={<Icons.SimpleSettings className="h-6 w-6" />}
+                icon={<Icons.SimpleSettings className="text-3xl" />}
                 title="Simple Settings"
                 description="Adjust the QR code preview and export size or configure your preferred visual style."
               />
@@ -134,7 +134,7 @@ export default function Home() {
                 See how TapToQR can improve your workflow.
               </p>
             </div>
-            <div className="grid gap-12 md:gap-24">
+            <div className="grid gap-4 md:gap-7">
               <ScreenshotCard
                 title="Easily Access on Mobile"
                 description={
