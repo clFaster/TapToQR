@@ -35,7 +35,8 @@ jobs:
   build-artifact:
     name: "Build TapToQR Artifact"
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
     outputs:
       VERSION: ${{ steps.determine-version.outputs.VERSION }}
 
