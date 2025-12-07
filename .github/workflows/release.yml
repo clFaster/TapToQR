@@ -170,7 +170,7 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
 
-      - uses: wdzeng/firefox-addon@1c933bcfc899dad45719bc23ec8c607d51bf8c06
+      - uses: wdzeng/firefox-addon@b78a4d0148897b072ef18aff65a6bd793e8109be
         name: "Upload to Firefox Addon Store"
         with:
           addon-guid: "taptoqr@moritzreis.dev"
