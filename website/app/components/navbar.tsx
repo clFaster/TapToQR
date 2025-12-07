@@ -4,39 +4,39 @@ import { BrowserStoreLink } from "./browser-store-link";
 
 export default function Navbar() {
   return (
-    <header className="w-full py-4 border-b border-border bg-background/90 backdrop-blur-sm sticky top-0 z-50">
-      <div className="container flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="w-full py-4 border-b border-border bg-background/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300">
+      <div className="container px-4 md:px-6 mx-auto flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 group">
           <Image
             src="/ic_TapToQR.svg"
             alt="TapToQR Logo"
             width={40}
             height={40}
-            className="h-10 w-10"
+            className="h-10 w-10 transition-transform group-hover:scale-110"
           />
-          <span className="text-xl font-bold">TapToQR</span>
+          <span className="text-xl font-bold tracking-tight">TapToQR</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           <Link
             href="#features"
-            className="text-foreground/80 hover:text-primary"
+            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Features
           </Link>
           <Link
             href="#screenshots"
-            className="text-foreground/80 hover:text-primary"
+            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Screenshots
           </Link>
           <Link
             href="https://github.com/clFaster/TapToQR"
             target="_blank"
-            className="text-foreground/80 hover:text-primary"
+            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             GitHub
           </Link>
-        </nav>{" "}
+        </nav>
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
             <BrowserStoreLink buttonStyle={true} />

@@ -1,16 +1,16 @@
 export default function Footer() {
   return (
-    <footer className="w-full py-8 bg-muted dark:bg-accent border-t border-border">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <h3 className="text-xl font-bold">License</h3>
-            <p className="mt-2 text-muted-foreground">
+    <footer className="w-full py-12 bg-muted/30 dark:bg-accent/10 border-t border-border">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold">License</h3>
+            <p className="text-muted-foreground leading-relaxed">
               This project is licensed under the GNU General Public License
               v3.0. See the{" "}
               <a
                 href="https://github.com/clFaster/TapToQR/blob/main/LICENSE"
-                className="hover:underline"
+                className="font-medium text-primary hover:underline underline-offset-4"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -19,13 +19,13 @@ export default function Footer() {
               file for details.
             </p>
           </div>
-          <div>
-            <h3 className="text-xl font-bold">Issues</h3>
-            <p className="mt-2 text-muted-foreground">
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold">Issues</h3>
+            <p className="text-muted-foreground leading-relaxed">
               All issues are tracked on the{" "}
               <a
                 href="https://github.com/clFaster/TapToQR/issues"
-                className="hover:underline"
+                className="font-medium text-primary hover:underline underline-offset-4"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -35,9 +35,9 @@ export default function Footer() {
             </p>
           </div>
         </div>
-        <div className="mt-8 border-t border-border pt-8 text-center">
+        <div className="mt-12 border-t border-border pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Moritz Reis
+            © {new Date().getFullYear()} Moritz Reis. All rights reserved.
           </p>
         </div>
       </div>
