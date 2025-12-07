@@ -68,11 +68,11 @@ export function BrowserStoreLink({
         href={store.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group flex items-center justify-center px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-md transition-colors relative"
+        className="group flex items-center justify-center px-4 py-2 text-sm font-bold bg-primary hover:bg-primary/90 text-white rounded-md transition-colors relative"
       >
         <span className="inline-flex items-center">
           Get Extension
-          <span className="ml-2 text-xs bg-white/20 px-1.5 py-0.5 rounded text-white/90 group-hover:bg-white/30 transition-colors">
+          <span className="ml-2 text-xs bg-white px-1.5 py-0.5 rounded text-primary transition-colors">
             {store.name}
           </span>
         </span>
