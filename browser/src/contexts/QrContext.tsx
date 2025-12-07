@@ -1,11 +1,10 @@
 import React, {
-  createContext,
   useState,
   useCallback,
   useEffect,
-  useContext,
   ReactNode,
 } from "react";
+import { QrContext, QrContextType } from "./QrContextDefinition";
 import {
   QrDataType,
   WifiData,
@@ -24,39 +23,7 @@ import {
 import { loadExtensionSettings } from "../utils/browser-storage";
 import { openExtensionSettingsPage } from "../utils/browser-runtime";
 
-interface QrContextType {
-  // State
-  dataType: QrDataType;
-  textContent: string;
-  wifiData: WifiData;
-  contactData: ContactData;
-  emailData: EmailData;
-  telephoneData: TelephoneData;
-  mapsData: MapsData;
-  calendarData: CalendarData;
-  qrCodeSvg: string;
 
-  // State updaters
-  setDataType: (type: QrDataType) => void;
-  setTextContent: (text: string) => void;
-  updateWifiData: (field: keyof WifiData, value: string) => void;
-  updateContactData: (field: keyof ContactData, value: string) => void;
-  updateEmailData: (field: keyof EmailData, value: string) => void;
-  updateTelephoneData: (field: keyof TelephoneData, value: string) => void;
-  updateMapsData: (field: keyof MapsData, value: string) => void;
-  updateCalendarData: (
-    field: keyof CalendarData,
-    value: string | boolean,
-  ) => void;
-
-  // Actions
-  copyToClipboard: () => Promise<void>;
-  downloadQrCode: () => Promise<void>;
-  openExtensionSettings: () => Promise<void>;
-  getFormattedContent: () => string;
-}
-
-const QrContext = createContext<QrContextType | null>(null);
 
 export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [dataType, setDataType] = useState<QrDataType>(QrDataType.TEXT);
@@ -295,10 +262,4 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   return <QrContext.Provider value={value}>{children}</QrContext.Provider>;
 };
 
-export const useQrContext = (): QrContextType => {
-  const context = useContext(QrContext);
-  if (!context) {
-    throw new Error("useQrContext must be used within a QrProvider");
-  }
-  return context;
-};
+

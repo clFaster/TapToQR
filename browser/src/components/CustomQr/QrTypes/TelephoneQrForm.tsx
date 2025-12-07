@@ -4,7 +4,7 @@ import {
   InputContainer,
   RadioGroup,
 } from "../../../styled/styled.ts";
-import { useQrContext } from "../../../contexts/QrContext.tsx";
+import { useQrContext } from "../../../hooks/useQrContext.ts";
 
 const TelephoneQrForm: React.FC = () => {
   const { telephoneData, updateTelephoneData } = useQrContext();

@@ -1,6 +1,6 @@
 import React from "react";
 import { CompactFormField, InputContainer } from "../../../styled/styled.ts";
-import { useQrContext } from "../../../contexts/QrContext.tsx";
+import { useQrContext } from "../../../hooks/useQrContext.ts";
 
 const MapsQrForm: React.FC = () => {
   const { mapsData, updateMapsData } = useQrContext();

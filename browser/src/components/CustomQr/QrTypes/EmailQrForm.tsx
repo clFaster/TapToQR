@@ -4,7 +4,7 @@ import {
   InputContainer,
   StyledTextarea,
 } from "../../../styled/styled.ts";
-import { useQrContext } from "../../../contexts/QrContext.tsx";
+import { useQrContext } from "../../../hooks/useQrContext.ts";
 
 const EmailQrForm: React.FC = () => {
   const { emailData, updateEmailData } = useQrContext();

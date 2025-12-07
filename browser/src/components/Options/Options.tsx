@@ -33,11 +33,6 @@ const Options = () => {
     showToast("Settings saved!");
   };
 
-  const loadOptions = async () => {
-    const result = await loadExtensionSettings();
-    setExtensionSettings(result);
-  };
-
   const revertOptions = async () => {
     const result = await revertExtensionSettings();
     setExtensionSettings(result);
@@ -75,6 +70,10 @@ const Options = () => {
   };
 
   useEffect(() => {
+    const loadOptions = async () => {
+      const result = await loadExtensionSettings();
+      setExtensionSettings(result);
+    };
     loadOptions().then();
   }, []);
 

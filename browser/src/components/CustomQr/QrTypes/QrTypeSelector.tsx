@@ -1,7 +1,7 @@
 import React from "react";
 import { QrDataType } from "../../../utils/qr-data-formatters.ts";
 import { TabContainer, Tab } from "../../../styled/styled-qr-selector.ts";
-import { useQrContext } from "../../../contexts/QrContext.tsx";
+import { useQrContext } from "../../../hooks/useQrContext.ts";
 
 const QrTypeSelector: React.FC = () => {
   const { dataType, setDataType } = useQrContext();
