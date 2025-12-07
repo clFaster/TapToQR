@@ -144,8 +144,11 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v6
 
+      - run: |
+          echo "Downloaded files:"
+          ls -r
+
       - name: Create Release
-        working-directory: './TapToQR-addon'
         env:
           GH_TOKEN: ${{github.token}}
         run: |
@@ -205,7 +208,7 @@ jobs:
 
       - name: "Setup Google Webstore CLI"
         run: |
-          pnpm install -g chrome-webstore-upload-cli
+          npm install -g chrome-webstore-upload-cli
 
       - name: "Upload to Chrome Webstore"
         run: |-
