@@ -32,6 +32,7 @@ export default function Navbar() {
           <Link
             href="https://github.com/clFaster/TapToQR"
             target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             GitHub

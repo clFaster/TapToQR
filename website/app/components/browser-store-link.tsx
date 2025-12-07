@@ -67,6 +67,7 @@ export function BrowserStoreLink({
       <Link
         href={store.url}
         target="_blank"
+        rel="noopener noreferrer"
         className="group flex items-center justify-center px-4 py-2 text-sm font-medium bg-primary hover:bg-primary/90 text-white rounded-md transition-colors relative"
       >
         <span className="inline-flex items-center">

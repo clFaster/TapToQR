@@ -17,9 +17,61 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TapToQR - Generate and share QR codes instantly",
+  metadataBase: new URL("https://taptoqr.moritzreis.dev"),
+  title: {
+    default: "TapToQR - Generate and share QR codes instantly",
+    template: "%s | TapToQR",
+  },
   description:
     "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events using a clean, intuitive browser extension with quick actions and personalization options.",
+  keywords: [
+    "QR code generator",
+    "browser extension",
+    "chrome extension",
+    "firefox addon",
+    "edge extension",
+    "QR code",
+    "share link",
+    "calendar QR",
+    "wifi QR",
+  ],
+  authors: [{ name: "TapToQR Team" }],
+  creator: "TapToQR",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://taptoqr.moritzreis.dev",
+    title: "TapToQR - Generate and share QR codes instantly",
+    description:
+      "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events.",
+    siteName: "TapToQR",
+    images: [
+      {
+        url: "/store/TapToQr-InAction.png",
+        width: 1200,
+        height: 630,
+        alt: "TapToQR in Action",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TapToQR - Generate and share QR codes instantly",
+    description:
+      "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events.",
+    images: ["/store/TapToQr-InAction.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
