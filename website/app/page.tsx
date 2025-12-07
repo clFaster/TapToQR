@@ -14,7 +14,7 @@ export default function Home() {
         {/* Hero Section */}
         <section
           id="hero"
-          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted dark:from-background dark:to-accent"
+          className="w-full py-12 md:py-24 lg:py-32 bg-linear-to-b from-background to-muted dark:from-background dark:to-accent"
         >
           <div className="container px-4 md:px-6 mx-auto flex flex-col items-center text-center gap-8">
             <div className="flex items-center justify-center animate-in fade-in zoom-in duration-500">
@@ -27,7 +27,7 @@ export default function Home() {
               />
             </div>
             <div className="space-y-4 max-w-3xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary-dark pb-2">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary-dark pb-2">
                 TapToQR
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed">

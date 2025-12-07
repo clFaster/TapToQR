@@ -1,52 +1,82 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #131515;
-  --primary: #339989;
-  --primary-light: #4db3a2;
-  --primary-dark: #257a6d;
-  --secondary: #7de2d1;
-  --secondary-light: #a3ebe0;
-  --secondary-dark: #5bc4b3;
-  --accent: #f0fdfa;
-  --muted: #f4f4f5;
-  --muted-foreground: #52525b;
-  --border: #e4e4e7;
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #131515;
-    --foreground: #fffafb;
+    --background: #ffffff;
+    --foreground: #131515;
     --primary: #339989;
-    --primary-light: #7de2d1;
+    --primary-light: #4db3a2;
     --primary-dark: #257a6d;
     --secondary: #7de2d1;
     --secondary-light: #a3ebe0;
     --secondary-dark: #5bc4b3;
-    --accent: #2b2c28;
-    --muted: #2b2c28;
-    --muted-foreground: #b0b0b0;
-    --border: #444444;
+    --accent: #f0fdfa;
+    --muted: #f4f4f5;
+    --muted-foreground: #52525b;
+    --border: #e4e4e7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #131515;
+      --foreground: #fffafb;
+      --primary: #339989;
+      --primary-light: #7de2d1;
+      --primary-dark: #257a6d;
+      --secondary: #7de2d1;
+      --secondary-light: #a3ebe0;
+      --secondary-dark: #5bc4b3;
+      --accent: #2b2c28;
+      --muted: #2b2c28;
+      --muted-foreground: #b0b0b0;
+      --border: #444444;
+    }
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.025em;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+a {
+  color: var(--primary);
+  transition: color 0.2s ease;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  letter-spacing: -0.025em;
+a:hover {
+  color: var(--primary-light);
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 a {
