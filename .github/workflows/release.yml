@@ -140,7 +140,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
 
       - name: Create Release
         working-directory: './TapToQR-addon'
@@ -164,7 +164,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
 
       - uses: wdzeng/firefox-addon@1c933bcfc899dad45719bc23ec8c607d51bf8c06
         name: "Upload to Firefox Addon Store"
@@ -195,7 +195,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
 
       - name: "Setup Google Webstore CLI"
         run: |
@@ -226,7 +226,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
 
       - name: Prepare Artifact
         run: |
