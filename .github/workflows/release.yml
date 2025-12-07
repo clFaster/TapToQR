@@ -144,10 +144,6 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v6
 
-      - run: |
-          echo "Downloaded files:"
-          ls -r
-
       - name: Create Release
         env:
           GH_TOKEN: ${{github.token}}
@@ -177,7 +173,7 @@ jobs:
         name: "Upload to Firefox Addon Store"
         with:
           addon-guid: "taptoqr@moritzreis.dev"
-          xpi-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
+          xpi-path: TapToQR-${{needs.build.outputs.VERSION}}.zip
           self-hosted: false
           jwt-issuer: ${{ secrets.FIREFOX_JWT_ISSUER }}
           jwt-secret: ${{ secrets.FIREFOX_JWT_SECRET }}
@@ -211,9 +207,7 @@ jobs:
           npm install -g chrome-webstore-upload-cli
 
       - name: "Upload to Chrome Webstore"
-        run: |-
-          cd TapToQR-addon
-
+        run: |
           unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
           rm TapToQR-${{needs.build.outputs.VERSION}}.zip
 
@@ -239,9 +233,9 @@ jobs:
 
       - name: Prepare Artifact
         run: |
-          cd TapToQR-addon
-          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip -d './TapToQR-addon'
           rm TapToQR-${{needs.build.outputs.VERSION}}.zip
+          cd TapToQR-addon
           FILE="manifest.json"
           jq 'del(.browser_specific_settings)' "$FILE" > temp_manifest.json && mv temp_manifest.json "$FILE"
           # zip again
