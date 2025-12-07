@@ -110,6 +110,7 @@ export function BrowserStoreLink({
                 width={172}
                 height={60}
                 className="h-[60px] w-auto"
+                style={{ width: "auto" }}
               />
             </div>
           </Link>
@@ -134,6 +135,7 @@ export function BrowserStoreLink({
             width={172}
             height={60}
             className="h-[60px] w-auto"
+            style={{ width: "auto" }}
           />
         </div>
       </Link>
