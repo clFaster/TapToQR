@@ -208,9 +208,9 @@ jobs:
 
       - name: "Upload to Chrome Webstore"
         run: |
-          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip
+          unzip TapToQR-${{needs.build.outputs.VERSION}}.zip -d './TapToQR-addon'
           rm TapToQR-${{needs.build.outputs.VERSION}}.zip
-
+          cd TapToQR-addon
           chrome-webstore-upload
 
   release-edge:
