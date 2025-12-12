@@ -1,0 +1,39 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Install Playwright Browsers
+      run: pnpm exec playwright install --with-deps
+      working-directory: browser
+
+    - name: Run Playwright tests (excluding extension tests that require build)
+      run: pnpm test --grep-invert extension
+      working-directory: browser
+      
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: browser/playwright-report/
+        retention-days: 30
