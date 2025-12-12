@@ -13,7 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "catalog:",
     "@fortawesome/free-solid-svg-icons": "catalog:",
     "@fortawesome/react-fontawesome": "catalog:",
-    "next": "16.0.9",
+    "next": "16.0.10",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
