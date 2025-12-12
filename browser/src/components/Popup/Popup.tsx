@@ -28,7 +28,7 @@ const Popup = () => {
   const [qrCodeSvg, setQrCodeSvg] = useState("");
 
   const generateQrContent = async (extensionSettings: ExtensionSettings) => {
-    const currentUrl = (await getActiveTab()) || "hallo";
+    const currentUrl = await getActiveTab();
     const svg = await generateSvgContent(
       currentUrl,
       extensionSettings.qrCodeSize,
@@ -39,7 +39,7 @@ const Popup = () => {
 
   useEffect(() => {
     loadExtensionSettings().then((extensionSettings) => {
-      generateQrContent(extensionSettings).then(async () => {
+      generateQrContent(extensionSettings).then(() => {
         const newWidth = extensionSettings.qrCodeSize + 10;
         const popupContainer = document.getElementById("popup-container");
         popupContainer?.setAttribute("style", `width: ${newWidth}px`);
@@ -47,34 +47,30 @@ const Popup = () => {
     });
   }, []);
 
+  const generateQrSvg = async (size: number) => {
+    const extensionSettings = await loadExtensionSettings();
+    const currentUrl = await getActiveTab();
+    return generateSvgContent(currentUrl, size, extensionSettings.displayLogo);
+  };
+
   const copyToClipboard = async () => {
     const extensionSettings = await loadExtensionSettings();
-    const currentUrl = (await getActiveTab()) || "hallo";
-    const svg = await generateSvgContent(
-      currentUrl,
-      extensionSettings.qrCodeDownloadSize,
-      extensionSettings.displayLogo,
-    );
-    copyQrCodeToClipboard(svg, extensionSettings.qrCodeDownloadSize).then();
+    const svg = await generateQrSvg(extensionSettings.qrCodeDownloadSize);
+    await copyQrCodeToClipboard(svg, extensionSettings.qrCodeDownloadSize);
   };
 
   const downloadQrCode = async () => {
     const extensionSettings = await loadExtensionSettings();
-    const currentUrl = (await getActiveTab()) || "hallo";
-    const svg = await generateSvgContent(
-      currentUrl,
-      extensionSettings.qrCodeDownloadSize,
-      extensionSettings.displayLogo,
-    );
-    downloadQrCodeAsPng(svg, extensionSettings.qrCodeDownloadSize).then();
+    const svg = await generateQrSvg(extensionSettings.qrCodeDownloadSize);
+    await downloadQrCodeAsPng(svg, extensionSettings.qrCodeDownloadSize);
   };
 
   const openCustomQrCodeWindow = () => {
     openCustomQrPage();
   };
 
-  const openExtensionSettings = () => {
-    openExtensionSettingsPage().then();
+  const openExtensionSettings = async () => {
+    await openExtensionSettingsPage();
   };
 
   return (
