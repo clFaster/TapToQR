@@ -142,7 +142,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
 
       - name: Create Release
         env:
@@ -167,7 +167,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
 
       - uses: wdzeng/firefox-addon@b78a4d0148897b072ef18aff65a6bd793e8109be
         name: "Upload to Firefox Addon Store"
@@ -200,7 +200,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
 
       - name: "Setup Google Webstore CLI"
         run: |
@@ -229,7 +229,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
 
       - name: Prepare Artifact
         run: |
