@@ -104,7 +104,7 @@ jobs:
           zip -r ../../TapToQR-${{steps.determine-version.outputs.VERSION}}.zip ./*
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           path: 'TapToQR-${{steps.determine-version.outputs.VERSION}}.zip'
           name: 'TapToQR-addon'
