@@ -107,7 +107,7 @@ export default function PrivacyPage() {
                   Sie haben das Recht auf Auskunft, Berichtigung, Löschung,
                   Einschränkung der Verarbeitung, Datenübertragbarkeit und
                   Widerspruch gemäß den Artikeln 15-21 DSGVO. Zur Ausübung
-                  dieser Rechte wenden Sie sich bitte an me@moritzreis.dev. Sie
+                  dieser Rechte wenden Sie sich bitte an legal@moritzreis.dev. Sie
                   haben außerdem das Recht, sich bei einer
                   Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer
                   personenbezogenen Daten zu beschweren.
