@@ -4,7 +4,7 @@
   "private": true,
   "packageManager": "pnpm@10.4.1",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 8080",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
