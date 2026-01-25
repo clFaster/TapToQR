@@ -18,13 +18,13 @@ export default function Navbar() {
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           <Link
-            href="#features"
+            href="/#features"
             className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Features
           </Link>
           <Link
-            href="#screenshots"
+            href="/#screenshots"
             className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
           >
             Screenshots
