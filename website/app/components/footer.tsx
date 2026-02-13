@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="space-y-3">
             <h3 className="text-lg font-semibold">Issues</h3>
             <p className="text-muted-foreground leading-relaxed">
-              All issues are tracked on the{" "}
+              Bug reports and feature requests are tracked on the{" "}
               <a
                 href="https://github.com/clFaster/TapToQR/issues"
                 className="font-medium text-primary hover:underline underline-offset-4"
@@ -33,7 +33,7 @@ export default function Footer() {
               >
                 GitHub repository
               </a>
-              . Feel free to report any bugs or suggest new features!
+              .
             </p>
           </div>
           <div className="space-y-3">

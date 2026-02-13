@@ -14,11 +14,11 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   metadataBase: new URL("https://taptoqr.moritzreis.dev"),
   title: {
-    default: "TapToQR - Generate and share QR codes instantly",
+    default: "TapToQR - QR codes for pages and custom content",
     template: "%s | TapToQR",
   },
   description:
-    "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events using a clean, intuitive browser extension with quick actions and personalization options.",
+    "TapToQR is an open-source browser extension that creates QR codes for webpages, text, contacts, Wi-Fi, and calendar events.",
   keywords: [
     "QR code generator",
     "browser extension",
@@ -36,9 +36,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://taptoqr.moritzreis.dev",
-    title: "TapToQR - Generate and share QR codes instantly",
+    title: "TapToQR - QR codes for pages and custom content",
     description:
-      "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events.",
+      "Create QR codes for webpages and custom content directly from your browser.",
     siteName: "TapToQR",
     images: [
       {
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TapToQR - Generate and share QR codes instantly",
+    title: "TapToQR - QR codes for pages and custom content",
     description:
-      "Generate customizable QR codes from any webpage with TapToQR - instantly share links, text, or calendar events.",
+      "Create QR codes for webpages and custom content directly from your browser.",
     images: ["/store/TapToQr-InAction.png"],
   },
   robots: {
