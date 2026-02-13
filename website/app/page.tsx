@@ -3,6 +3,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { BrowserStoreLink } from "./components/browser-store-link";
 import { Icons } from "./components/icons";
+import { ScrollRevealInit } from "./components/scroll-reveal";
 
 const features = [
   {
@@ -81,12 +82,14 @@ const screenshots = [
 export default function Home() {
   return (
     <>
+      <ScrollRevealInit />
       <Navbar />
       <main className="flex min-h-screen flex-col bg-background">
+        {/* ── Hero ── */}
         <section className="relative overflow-hidden pb-20 pt-12 md:pb-28 md:pt-20">
           <div className="aurora-blob aurora-blob-a aurora-drift-slow" />
           <div className="aurora-blob aurora-blob-b aurora-drift-fast" />
-          <div className="aurora-grid-overlay" />
+          <div className="aurora-grid-overlay aurora-grid-fade" />
 
           <div className="container relative z-10 mx-auto px-4 md:px-6">
             <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
@@ -158,15 +161,19 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Features ── */}
         <section
           id="features"
-          className="relative overflow-hidden bg-muted/30 py-20 md:py-24"
+          className="section-fade-top section-fade-bottom relative overflow-hidden bg-muted/30 py-20 md:py-24"
         >
           <div className="aurora-spotlight-left" />
           <div className="aurora-spotlight-right" />
 
           <div className="container relative z-10 mx-auto px-4 md:px-6">
-            <div className="mx-auto max-w-3xl text-center">
+            <div
+              className="sr-init sr-fade-up mx-auto max-w-3xl text-center"
+              data-sr
+            >
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                 Key Features
               </p>
@@ -174,17 +181,20 @@ export default function Home() {
                 What you can do with TapToQR
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
-                The extension keeps common sharing tasks quick and keeps advanced options available when you need them.
+                The extension keeps common sharing tasks quick and keeps
+                advanced options available when you need them.
               </p>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature) => {
+              {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <article
                     key={feature.title}
-                    className="rounded-2xl border border-border bg-background/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    className="sr-init sr-fade-up rounded-2xl border border-border bg-background/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    data-sr
+                    data-sr-delay={String(100 + idx * 80)}
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="text-xl" />
@@ -202,10 +212,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Workflow ── */}
         <section className="bg-background py-20 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div>
+              <div className="sr-init sr-slide-right" data-sr>
                 <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                   Workflow
                 </p>
@@ -213,18 +224,21 @@ export default function Home() {
                   A clear workflow for everyday use
                 </h2>
                 <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
-                  Whether you share links daily or occasionally, the steps stay simple and predictable.
+                  Whether you share links daily or occasionally, the steps stay
+                  simple and predictable.
                 </p>
               </div>
 
               <div className="grid gap-5">
-                {flow.map((item) => (
+                {flow.map((item, idx) => (
                   <article
                     key={item.step}
-                    className="rounded-2xl border border-border bg-muted/20 p-5"
+                    className="sr-init sr-slide-left rounded-2xl border border-border bg-muted/20 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+                    data-sr
+                    data-sr-delay={String(150 + idx * 120)}
                   >
                     <div className="flex items-center gap-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-background text-sm font-bold text-primary">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-background text-sm font-bold text-primary">
                         {item.step}
                       </span>
                       <div>
@@ -243,9 +257,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="screenshots" className="bg-muted/30 py-20 md:py-24">
+        {/* ── Screenshots ── */}
+        <section
+          id="screenshots"
+          className="section-fade-top bg-muted/30 py-20 md:py-24"
+        >
           <div className="container mx-auto px-4 md:px-6">
-            <div className="mx-auto max-w-3xl text-center">
+            <div
+              className="sr-init sr-fade-up mx-auto max-w-3xl text-center"
+              data-sr
+            >
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                 Screenshots
               </p>
@@ -261,9 +282,11 @@ export default function Home() {
               {screenshots.map((shot, idx) => (
                 <article
                   key={shot.src}
-                  className={`rounded-3xl border border-border bg-background p-5 shadow-xl ${
+                  className={`sr-init sr-scale-in rounded-3xl border border-border bg-background p-5 shadow-xl transition-all duration-300 hover:shadow-2xl ${
                     idx % 2 === 1 ? "md:translate-y-8" : ""
                   }`}
+                  data-sr
+                  data-sr-delay={String(100 + idx * 120)}
                 >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <Image

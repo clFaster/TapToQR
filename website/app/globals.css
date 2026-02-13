@@ -50,6 +50,10 @@
     }
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     color: var(--foreground);
     background: var(--background);
@@ -90,6 +94,11 @@
       linear-gradient(to bottom, rgba(51, 153, 137, 0.18) 1px, transparent 1px);
     background-size: 36px 36px;
     pointer-events: none;
+  }
+
+  .aurora-grid-fade {
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   }
 
   .aurora-blob {
@@ -144,6 +153,89 @@
   .aurora-drift-fast {
     animation: aurora-drift-fast 8s ease-in-out infinite alternate;
   }
+
+}
+
+/* ── Scroll-reveal (outside @layer to avoid Tailwind v4 specificity issues) ── */
+
+.sr-init {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sr-fade-up {
+  transform: translateY(32px);
+}
+
+.sr-fade-in {
+  transform: none;
+}
+
+.sr-slide-left {
+  transform: translateX(40px);
+}
+
+.sr-slide-right {
+  transform: translateX(-40px);
+}
+
+.sr-scale-in {
+  transform: scale(0.92);
+}
+
+.sr-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ── Section transition soft edges ── */
+
+.section-fade-top {
+  position: relative;
+}
+
+.section-fade-top::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--background), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-fade-bottom {
+  position: relative;
+}
+
+.section-fade-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to top, var(--background), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-fade-top-muted::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--muted), transparent);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
 }
 
 @keyframes reveal-up {
@@ -184,5 +276,10 @@
   .aurora-drift-slow,
   .aurora-drift-fast {
     animation: none !important;
+  }
+
+  .sr-init {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
