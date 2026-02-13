@@ -41,10 +41,15 @@ const flow = [
   {
     step: "01",
     title: "Start from the current tab",
-    text: "Click TapToQR Icon to generate a QR for the page you are already on.",
+    text: "Click the TapToQR icon to generate a QR for the page you are already on.",
   },
   {
     step: "02",
+    title: "Switch to custom mode when needed",
+    text: "Use built-in forms for text, contacts, Wi-Fi, email, phone, or calendar details.",
+  },
+  {
+    step: "03",
     title: "Scan, copy, or download",
     text: "Share immediately from the popup or export a clean PNG for later use.",
   },
@@ -103,10 +108,10 @@ export default function Home() {
                     No tracking
                   </span>
                   <span className="rounded-full border border-primary/30 bg-background/70 px-3 py-1">
-                    Open source
+                    Works offline
                   </span>
                   <span className="rounded-full border border-primary/30 bg-background/70 px-3 py-1">
-                    Lightweight
+                    Open-source project
                   </span>
                 </div>
               </div>
@@ -142,7 +147,7 @@ export default function Home() {
                   <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                     <Image
                       src="/store/TapToQr-InAction.png"
-                      alt="TapToQR extension"
+                      alt="TapToQR in action"
                       fill
                       className="object-cover"
                     />
@@ -168,6 +173,9 @@ export default function Home() {
               <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                 What you can do with TapToQR
               </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                The extension keeps common sharing tasks quick and keeps advanced options available when you need them.
+              </p>
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -205,8 +213,7 @@ export default function Home() {
                   A clear workflow for everyday use
                 </h2>
                 <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
-                  Whether you share links daily or only occasionally, the flow
-                  is easy to remember.
+                  Whether you share links daily or occasionally, the steps stay simple and predictable.
                 </p>
               </div>
 
@@ -245,6 +252,9 @@ export default function Home() {
               <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
                 TapToQR in Action
               </h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                A look at the popup, settings, and custom QR workflow.
+              </p>
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2">
