@@ -1,12 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+
 :root {
-  --main-font-family: "Source Sans Pro";
+  --main-font-family: "Geist", system-ui, sans-serif;
   --bg-color: #131515;
   --fg-color: #fffafb;
   --grey-bg-color: #2b2c28;
   --primary-color: #339989;
+  --primary-light: #7de2d1;
+  --primary-dark: #257a6d;
   --secondary-color: #7de2d1;
-  --border-color: #444;
-  --text-color: #ececec;
+  --secondary-light: #a3ebe0;
+  --secondary-dark: #5bc4b3;
+  --border-color: #444444;
+  --text-color: #b0b0b0;
+  --muted-color: #2b2c28;
   --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -21,11 +28,22 @@ html {
 }
 
 body {
-  font-family: var(--main-font-family), sans-serif;
+  font-family: var(--main-font-family);
   background-color: var(--bg-color);
   color: var(--fg-color);
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.025em;
 }
 
 #root {
