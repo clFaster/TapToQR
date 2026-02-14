@@ -49,7 +49,7 @@ const MapsQrForm: React.FC = () => {
           htmlFor="mapsQuery"
           style={isQueryDisabled ? disabledLabelStyle : {}}
         >
-          Search Location
+          Address
         </label>
         <InputContainer>
           <input
@@ -71,7 +71,7 @@ const MapsQrForm: React.FC = () => {
         <small>OR enter coordinates directly:</small>
         {mapsData.query && (
           <small style={{ color: "#999" }}>
-            Coordinates disabled while using search location
+            Coordinates disabled while using address
           </small>
         )}
       </CompactFormField>
@@ -131,7 +131,7 @@ const MapsQrForm: React.FC = () => {
       </CompactFormField>
       {(mapsData.latitude || mapsData.longitude) && (
         <small style={{ color: "#999", display: "block" }}>
-          Search location disabled while using coordinates
+          Address disabled while using coordinates
         </small>
       )}
     </>
