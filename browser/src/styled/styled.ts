@@ -5,8 +5,13 @@ export const PopupContainer = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 8px;
   width: 100%;
+  background: radial-gradient(
+    ellipse at 15% 0%,
+    rgba(125, 226, 209, 0.08) 0%,
+    transparent 55%
+  );
 `;
 
 export const QrCodeContainer = styled.div`
@@ -41,6 +46,8 @@ export const OptionContainer = styled.main`
   min-height: 100vh;
   margin: 0;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 `;
 
 export const CustomQrPageContainer = styled.main`
@@ -54,6 +61,7 @@ export const CustomQrPageContainer = styled.main`
   padding: 10px 20px;
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 `;
 
 export const CustomQrContainer = styled.div`
@@ -66,6 +74,8 @@ export const CustomQrContainer = styled.div`
   padding: 0;
   box-sizing: border-box;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 `;
 
 export const FormSideContainer = styled.div`
@@ -118,6 +128,8 @@ export const SettingsContainer = styled.div`
   border: 1px solid var(--border-color);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 
   form {
     width: 80%;

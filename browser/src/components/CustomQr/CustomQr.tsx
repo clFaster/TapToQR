@@ -8,6 +8,7 @@ import {
   FormSection,
 } from "../../styled/styled.ts";
 import TapToQrHeader from "../Shared/TapToQrHeader/TapToQrHeader.tsx";
+import AuroraBackground from "../Shared/AuroraBackground/AuroraBackground.tsx";
 import { Button, ButtonContainer } from "../../styled/styled-button.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload, faGear } from "@fortawesome/free-solid-svg-icons";
@@ -57,6 +58,7 @@ const QrContent = () => {
 
   return (
     <CustomQrPageContainer>
+      <AuroraBackground />
       <TapToQrHeader title="TapToQR | Create" />
 
       <CustomQrContainer>

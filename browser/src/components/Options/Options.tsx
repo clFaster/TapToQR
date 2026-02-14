@@ -9,6 +9,7 @@ import {
   Toast,
 } from "../../styled/styled.ts";
 import TapToQrHeader from "../Shared/TapToQrHeader/TapToQrHeader.tsx";
+import AuroraBackground from "../Shared/AuroraBackground/AuroraBackground.tsx";
 import {
   ExtensionSettings,
   loadExtensionSettings,
@@ -79,6 +80,7 @@ const Options = () => {
 
   return (
     <OptionContainer>
+      <AuroraBackground />
       <TapToQrHeader title="TapToQR Settings" />
 
       <SettingsContainer>

@@ -61,3 +61,110 @@ body.custom-qr-page #root {
   height: 100%;
   flex-direction: column;
 }
+
+/* ── Aurora background effects ── */
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(0.2px);
+  pointer-events: none;
+}
+
+.aurora-blob-a {
+  left: -6rem;
+  top: 0;
+  width: 20rem;
+  height: 20rem;
+  background: radial-gradient(
+    circle,
+    rgba(125, 226, 209, 0.35),
+    transparent 70%
+  );
+}
+
+.aurora-blob-b {
+  right: -4rem;
+  top: 2.5rem;
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(
+    circle,
+    rgba(51, 153, 137, 0.25),
+    transparent 70%
+  );
+}
+
+.aurora-grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: linear-gradient(
+      to right,
+      rgba(51, 153, 137, 0.15) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(51, 153, 137, 0.15) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+}
+
+.aurora-grid-fade {
+  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+}
+
+.aurora-spotlight-left {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 10% 15%,
+    rgba(125, 226, 209, 0.2),
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+.aurora-spotlight-right {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 90% 80%,
+    rgba(51, 153, 137, 0.15),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+
+.aurora-drift-slow {
+  animation: aurora-drift-slow 12s ease-in-out infinite alternate;
+}
+
+.aurora-drift-fast {
+  animation: aurora-drift-fast 8s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-slow {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(32px, -16px, 0) scale(1.06);
+  }
+}
+
+@keyframes aurora-drift-fast {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-24px, 20px, 0) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-drift-slow,
+  .aurora-drift-fast {
+    animation: none !important;
+  }
+}
