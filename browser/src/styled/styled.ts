@@ -32,13 +32,12 @@ export const CustomQrCodeContainer = styled.div`
   height: 85%;
   padding: 5px;
   box-sizing: border-box;
-  border-radius: 12px;
-  overflow: hidden;
 
   svg {
     max-width: 100%;
     max-height: 100%;
     height: auto;
+    border-radius: 12px;
   }
 `;
 
@@ -427,7 +426,6 @@ export const CompactFormField = styled(FormField)`
       padding: 8px 10px;
       margin-bottom: 6px;
       width: 100%;
-      border-color: rgba(255, 250, 251, 0.15);
     }
   }
 `;
@@ -436,7 +434,7 @@ export const FormSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 12px 0;
+  padding: 12px 6px;
   overflow-y: auto;
 `;
 
