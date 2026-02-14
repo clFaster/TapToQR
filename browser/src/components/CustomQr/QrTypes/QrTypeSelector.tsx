@@ -1,62 +1,74 @@
 import React from "react";
 import { QrDataType } from "../../../utils/qr-data-formatters.ts";
-import { TabContainer, Tab } from "../../../styled/styled-qr-selector.ts";
+import {
+  TabContainer,
+  Tab,
+  TabIcon,
+} from "../../../styled/styled-qr-selector.ts";
 import { useQrContext } from "../../../hooks/useQrContext.ts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAlignLeft,
+  faWifi,
+  faAddressCard,
+  faEnvelope,
+  faPhone,
+  faLocationDot,
+  faCalendarDays,
+} from "@fortawesome/free-solid-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
+const typeIcons: Record<QrDataType, IconDefinition> = {
+  [QrDataType.TEXT]: faAlignLeft,
+  [QrDataType.WIFI]: faWifi,
+  [QrDataType.CONTACT]: faAddressCard,
+  [QrDataType.EMAIL]: faEnvelope,
+  [QrDataType.TELEPHONE]: faPhone,
+  [QrDataType.MAPS]: faLocationDot,
+  [QrDataType.CALENDAR]: faCalendarDays,
+};
+
+const typeLabels: Record<QrDataType, string> = {
+  [QrDataType.TEXT]: "Text",
+  [QrDataType.WIFI]: "Wi-Fi",
+  [QrDataType.CONTACT]: "Contact",
+  [QrDataType.EMAIL]: "Email",
+  [QrDataType.TELEPHONE]: "Phone",
+  [QrDataType.MAPS]: "Maps",
+  [QrDataType.CALENDAR]: "Calendar",
+};
+
+const allTypes = [
+  QrDataType.TEXT,
+  QrDataType.WIFI,
+  QrDataType.CONTACT,
+  QrDataType.EMAIL,
+  QrDataType.TELEPHONE,
+  QrDataType.MAPS,
+  QrDataType.CALENDAR,
+];
 
 const QrTypeSelector: React.FC = () => {
   const { dataType, setDataType } = useQrContext();
 
   return (
     <TabContainer>
-      <Tab
-        active={dataType === QrDataType.TEXT}
-        onClick={() => setDataType(QrDataType.TEXT)}
-        type="button"
-      >
-        {QrDataType.TEXT}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.WIFI}
-        onClick={() => setDataType(QrDataType.WIFI)}
-        type="button"
-      >
-        {QrDataType.WIFI}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.CONTACT}
-        onClick={() => setDataType(QrDataType.CONTACT)}
-        type="button"
-      >
-        {QrDataType.CONTACT}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.EMAIL}
-        onClick={() => setDataType(QrDataType.EMAIL)}
-        type="button"
-      >
-        {QrDataType.EMAIL}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.TELEPHONE}
-        onClick={() => setDataType(QrDataType.TELEPHONE)}
-        type="button"
-      >
-        {QrDataType.TELEPHONE}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.MAPS}
-        onClick={() => setDataType(QrDataType.MAPS)}
-        type="button"
-      >
-        {QrDataType.MAPS}
-      </Tab>
-      <Tab
-        active={dataType === QrDataType.CALENDAR}
-        onClick={() => setDataType(QrDataType.CALENDAR)}
-        type="button"
-      >
-        {QrDataType.CALENDAR}
-      </Tab>
+      {allTypes.map((type) => {
+        const isActive = dataType === type;
+        return (
+          <Tab
+            key={type}
+            active={isActive}
+            onClick={() => setDataType(type)}
+            type="button"
+          >
+            <TabIcon active={isActive}>
+              <FontAwesomeIcon icon={typeIcons[type]} />
+            </TabIcon>
+            {typeLabels[type]}
+          </Tab>
+        );
+      })}
     </TabContainer>
   );
 };

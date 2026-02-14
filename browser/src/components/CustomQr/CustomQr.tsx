@@ -1,5 +1,6 @@
 import {
   CustomQrContainer,
+  CustomQrPageWrapper,
   CustomQrPageContainer,
   CustomQrCodeContainer,
   QrSideContainer,
@@ -57,48 +58,50 @@ const QrContent = () => {
   };
 
   return (
-    <CustomQrPageContainer>
+    <CustomQrPageWrapper>
       <AuroraBackground />
-      <TapToQrHeader title="TapToQR | Create" />
+      <CustomQrPageContainer>
+        <TapToQrHeader title="TapToQR | Create" />
 
-      <CustomQrContainer>
-        <FormSideContainer>
-          <FormContainer>
-            <QrTypeSelector />
-            <FormSection>{renderQrForm()}</FormSection>
-          </FormContainer>
-        </FormSideContainer>
-        <QrSideContainer>
-          <CustomQrCodeContainer
-            dangerouslySetInnerHTML={{ __html: qrCodeSvg }}
-          />
+        <CustomQrContainer>
+          <FormSideContainer>
+            <FormContainer>
+              <QrTypeSelector />
+              <FormSection>{renderQrForm()}</FormSection>
+            </FormContainer>
+          </FormSideContainer>
+          <QrSideContainer>
+            <CustomQrCodeContainer
+              dangerouslySetInnerHTML={{ __html: qrCodeSvg }}
+            />
 
-          <ButtonContainer>
-            <Button
-              id="download-btn"
-              title="Download as PNG"
-              onClick={downloadQrCode}
-            >
-              <FontAwesomeIcon icon={faDownload} size={"2x"} />
-            </Button>
-            <Button
-              id="copy-btn"
-              title="Copy to Clipboard"
-              onClick={copyToClipboard}
-            >
-              <FontAwesomeIcon icon={faCopy} size={"2x"} />
-            </Button>
-            <Button
-              id="setting-btn"
-              title="Open TapToQR Settings"
-              onClick={openExtensionSettings}
-            >
-              <FontAwesomeIcon icon={faGear} size={"2x"} />
-            </Button>
-          </ButtonContainer>
-        </QrSideContainer>
-      </CustomQrContainer>
-    </CustomQrPageContainer>
+            <ButtonContainer>
+              <Button
+                id="download-btn"
+                title="Download as PNG"
+                onClick={downloadQrCode}
+              >
+                <FontAwesomeIcon icon={faDownload} size={"2x"} />
+              </Button>
+              <Button
+                id="copy-btn"
+                title="Copy to Clipboard"
+                onClick={copyToClipboard}
+              >
+                <FontAwesomeIcon icon={faCopy} size={"2x"} />
+              </Button>
+              <Button
+                id="setting-btn"
+                title="Open TapToQR Settings"
+                onClick={openExtensionSettings}
+              >
+                <FontAwesomeIcon icon={faGear} size={"2x"} />
+              </Button>
+            </ButtonContainer>
+          </QrSideContainer>
+        </CustomQrContainer>
+      </CustomQrPageContainer>
+    </CustomQrPageWrapper>
   );
 };
 

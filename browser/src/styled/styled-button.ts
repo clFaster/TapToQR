@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 12px;
-  padding: 12px 0;
+  padding: 8px 0;
   justify-content: center;
   width: 100%;
+  flex-shrink: 0;
 `;
 
 export const Button = styled.button`

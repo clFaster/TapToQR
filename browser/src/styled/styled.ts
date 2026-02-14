@@ -28,15 +28,17 @@ export const CustomQrCodeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
   width: 100%;
-  height: 85%;
+  min-height: 0;
   padding: 5px;
   box-sizing: border-box;
 
   svg {
+    width: auto;
+    height: auto;
     max-width: 100%;
     max-height: 100%;
-    height: auto;
     border-radius: 12px;
   }
 `;
@@ -53,30 +55,41 @@ export const OptionContainer = styled.main`
   overflow: hidden;
 `;
 
+export const CustomQrPageWrapper = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
 export const CustomQrPageContainer = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100vh;
   max-height: 750px;
+  height: calc(100vh - 20px);
   width: 100%;
   max-width: 950px;
-  margin: 0 auto;
   padding: 10px 20px;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
+  z-index: 1;
 `;
 
 export const CustomQrContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
-  height: calc(100% - 90px);
+  height: calc(100% - 82px);
   padding: 0;
   box-sizing: border-box;
-  gap: 20px;
+  gap: 16px;
   position: relative;
   z-index: 1;
 `;
@@ -84,27 +97,14 @@ export const CustomQrContainer = styled.div`
 export const FormSideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: calc(55% - 8px);
   height: 100%;
-  overflow-y: auto;
+  min-width: 0;
   box-sizing: border-box;
-  padding: 0 6px;
-
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-color) transparent;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-    border-radius: 3px;
-  }
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  background-color: rgba(43, 44, 40, 0.3);
+  overflow: hidden;
 `;
 
 export const QrSideContainer = styled.div`
@@ -112,13 +112,16 @@ export const QrSideContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 39%;
-  height: 75%;
+  width: calc(45% - 8px);
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
   border: 1px solid var(--border-color);
   border-radius: 16px;
-  margin-top: auto;
-  margin-bottom: auto;
+  padding: 16px 14px;
+  gap: 12px;
   background-color: rgba(43, 44, 40, 0.3);
+  box-sizing: border-box;
 `;
 
 export const SettingsContainer = styled.div`
@@ -389,8 +392,9 @@ export const FormContainer = styled.form`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  gap: 12px;
-  padding: 10px;
+  min-height: 0;
+  gap: 0;
+  padding: 14px 16px;
   box-sizing: border-box;
 `;
 
@@ -434,8 +438,26 @@ export const FormSection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 12px 6px;
+  flex: 1;
+  min-height: 0;
+  padding: 12px 2px;
   overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+  }
 `;
 
 export const RadioGroup = styled.div`

@@ -4,46 +4,59 @@ export const TabContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  gap: 5px;
+  padding: 2px 0 12px;
   border-bottom: 1px solid var(--border-color);
-  margin-bottom: 16px;
-  gap: 2px;
 `;
 
 export const Tab = styled.button<{ active: boolean }>`
-  padding: 8px 14px;
-  background: none;
-  border: none;
-  color: ${(props) =>
-    props.active ? "var(--primary-color)" : "var(--text-color)"};
-  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
   font-family: var(--main-font-family);
   font-weight: ${(props) => (props.active ? "600" : "400")};
+  letter-spacing: -0.01em;
   cursor: pointer;
-  position: relative;
   transition:
     color 0.2s ease,
-    background-color 0.2s ease;
-  border-radius: 8px 8px 0 0;
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
-    transform: scaleX(${(props) => (props.active ? 1 : 0)});
-    transition: transform 0.2s ease;
-    border-radius: 1px;
-  }
+  background-color: ${(props) =>
+    props.active ? "rgba(51, 153, 137, 0.14)" : "transparent"};
+  color: ${(props) =>
+    props.active ? "var(--fg-color)" : "var(--text-color)"};
+  border: 1px solid
+    ${(props) =>
+      props.active ? "rgba(51, 153, 137, 0.35)" : "transparent"};
 
   &:hover {
-    color: var(--primary-color);
-    background-color: rgba(51, 153, 137, 0.08);
+    background-color: ${(props) =>
+      props.active ? "rgba(51, 153, 137, 0.18)" : "rgba(51, 153, 137, 0.08)"};
+    color: var(--fg-color);
+    border-color: ${(props) =>
+      props.active ? "rgba(51, 153, 137, 0.45)" : "rgba(85, 85, 85, 0.4)"};
+  }
 
-    &:after {
-      transform: scaleX(0.7);
-    }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(51, 153, 137, 0.3);
+  }
+`;
+
+export const TabIcon = styled.span<{ active: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  color: ${(props) =>
+    props.active ? "var(--primary-light)" : "var(--text-color)"};
+  transition: color 0.2s ease;
+
+  ${Tab}:hover & {
+    color: var(--primary-light);
   }
 `;
