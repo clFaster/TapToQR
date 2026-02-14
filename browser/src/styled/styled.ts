@@ -20,6 +20,8 @@ export const QrCodeContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
 `;
 
 export const CustomQrCodeContainer = styled.div`
@@ -30,6 +32,8 @@ export const CustomQrCodeContainer = styled.div`
   height: 85%;
   padding: 5px;
   box-sizing: border-box;
+  border-radius: 12px;
+  overflow: hidden;
 
   svg {
     max-width: 100%;
@@ -85,6 +89,7 @@ export const FormSideContainer = styled.div`
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
+  padding: 0 6px;
 
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) transparent;
@@ -410,9 +415,9 @@ export const CompactFormField = styled(FormField)`
 
   label {
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 4px;
-    color: var(--text-color);
+    color: var(--fg-color);
   }
 
   ${InputContainer} {
@@ -422,6 +427,7 @@ export const CompactFormField = styled(FormField)`
       padding: 8px 10px;
       margin-bottom: 6px;
       width: 100%;
+      border-color: rgba(255, 250, 251, 0.15);
     }
   }
 `;
