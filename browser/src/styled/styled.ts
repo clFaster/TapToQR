@@ -62,7 +62,8 @@ export const CustomQrPageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const CustomQrPageContainer = styled.main`
@@ -80,15 +81,15 @@ export const CustomQrPageContainer = styled.main`
 `;
 
 export const CustomQrContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   align-items: stretch;
   width: 100%;
   height: calc(100% - 82px);
   padding: 0;
   box-sizing: border-box;
   gap: 16px;
+  min-width: 0;
   position: relative;
   z-index: 1;
 `;
@@ -96,8 +97,9 @@ export const CustomQrContainer = styled.div`
 export const FormSideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 55%;
+  width: 100%;
   height: 100%;
+  min-width: 0;
   box-sizing: border-box;
   border: 1px solid var(--border-color);
   border-radius: 16px;
@@ -110,9 +112,10 @@ export const QrSideContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 45%;
+  width: 100%;
   height: 100%;
   min-height: 0;
+  min-width: 0;
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 16px 14px;
