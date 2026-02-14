@@ -12,7 +12,7 @@
     "start:firefox": "concurrently -k -n BUILD,FIREFOX -c cyan,magenta \"pnpm dev\" \"pnpm start:firefox:browser\"",
     "start:firefox:browser": "web-ext run --start-url https://mozilla.org --browser-console --source-dir build",
     "start:edge": "concurrently -k -n BUILD,EDGE -c cyan,green \"pnpm dev\" \"pnpm start:edge:browser\"",
-    "start:edge:browser": "web-ext run --target chromium --chromium-binary msedge --start-url https://www.microsoft.com --source-dir build",
+    "start:edge:browser": "web-ext run --target chromium --chromium-binary \"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --start-url https://www.microsoft.com --source-dir build",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
