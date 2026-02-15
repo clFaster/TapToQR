@@ -1,8 +1,14 @@
-import Image from "next/image";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { BrowserStoreLink } from "./components/browser-store-link";
 import { Icons } from "./components/icons";
+
+const heroSizes = "(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 562px";
+const gallerySizes = "(max-width: 768px) 92vw, (max-width: 1280px) 44vw, 562px";
+
+function buildSrcSet(baseName: string) {
+  return `/store/${baseName}-720.webp 720w, /store/${baseName}-1120.webp 1120w, /store/${baseName}.webp 1360w`;
+}
 
 const features = [
   {
@@ -57,21 +63,25 @@ const flow = [
 
 const screenshots = [
   {
+    srcSet: buildSrcSet("TapToQr-InAction"),
     src: "/store/TapToQr-InAction.webp",
     alt: "TapToQR in action",
     title: "Scan a page on desktop, open it on phone",
   },
   {
+    srcSet: buildSrcSet("TapToQr-Extension"),
     src: "/store/TapToQr-Extension.webp",
     alt: "TapToQR extension",
     title: "Toolbar popup with immediate QR output",
   },
   {
+    srcSet: buildSrcSet("TapToQr-Settings"),
     src: "/store/TapToQr-Settings.webp",
     alt: "TapToQR settings",
     title: "Settings for preview and export defaults",
   },
   {
+    srcSet: buildSrcSet("TapToQr-CustomQr"),
     src: "/store/TapToQr-CustomQr.webp",
     alt: "TapToQR custom QR",
     title: "Custom QR builder for structured content",
@@ -146,15 +156,25 @@ export default function Home() {
                 </div>
                 <div className="mt-6 rounded-2xl border border-border bg-background p-3">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
-                    <Image
-                      src="/store/TapToQr-InAction.webp"
-                      alt="TapToQR in action"
-                      fill
-                      priority
-                      fetchPriority="high"
-                      sizes="(max-width: 1024px) 100vw, 32vw"
-                      className="object-cover"
-                    />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet={buildSrcSet("TapToQr-InAction")}
+                        sizes={heroSizes}
+                      />
+                      <img
+                        src="/store/TapToQr-InAction.webp"
+                        srcSet={buildSrcSet("TapToQr-InAction")}
+                        sizes={heroSizes}
+                        alt="TapToQR in action"
+                        width={1360}
+                        height={850}
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </picture>
                   </div>
                 </div>
               </div>
@@ -278,13 +298,24 @@ export default function Home() {
                   }`}
                 >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
-                    <Image
-                      src={shot.src}
-                      alt={shot.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                    />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet={shot.srcSet}
+                        sizes={gallerySizes}
+                      />
+                      <img
+                        src={shot.src}
+                        srcSet={shot.srcSet}
+                        sizes={gallerySizes}
+                        alt={shot.alt}
+                        width={1360}
+                        height={850}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
+                    </picture>
                   </div>
                   <h3 className="mt-4 text-lg font-semibold leading-tight">
                     {shot.title}
