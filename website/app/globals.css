@@ -156,35 +156,6 @@
 
 }
 
-/* ── Scroll-reveal (outside @layer to avoid Tailwind v4 specificity issues) ── */
-
-.sr-init {
-  opacity: 0;
-  transform: var(--sr-transform, none);
-  will-change: opacity, transform;
-  animation: sr-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.sr-fade-up {
-  --sr-transform: translateY(32px);
-}
-
-.sr-fade-in {
-  --sr-transform: none;
-}
-
-.sr-slide-left {
-  --sr-transform: translateX(40px);
-}
-
-.sr-slide-right {
-  --sr-transform: translateX(-40px);
-}
-
-.sr-scale-in {
-  --sr-transform: scale(0.92);
-}
-
 /* ── Section transition soft edges ── */
 
 .section-fade-top {
@@ -244,18 +215,6 @@
   }
 }
 
-@keyframes sr-reveal {
-  from {
-    opacity: 0;
-    transform: var(--sr-transform, none);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
 @keyframes aurora-drift-slow {
   from {
     transform: translate3d(0, 0, 0) scale(1);
@@ -284,8 +243,4 @@
     animation: none !important;
   }
 
-  .sr-init {
-    opacity: 1 !important;
-    transform: none !important;
-  }
 }

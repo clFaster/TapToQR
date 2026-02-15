@@ -76,6 +76,8 @@ export function BrowserStoreLink({
                 alt={store.imageAlt}
                 width={172}
                 height={60}
+                loading="eager"
+                fetchPriority="high"
                 className="h-[60px] w-auto"
                 style={{ width: "auto" }}
               />
@@ -102,6 +104,8 @@ export function BrowserStoreLink({
             alt={store.imageAlt}
             width={172}
             height={60}
+            loading="eager"
+            fetchPriority="high"
             className="h-[60px] w-auto"
             style={{ width: "auto" }}
           />

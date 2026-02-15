@@ -151,6 +151,7 @@ export default function Home() {
                       alt="TapToQR in action"
                       fill
                       priority
+                      fetchPriority="high"
                       sizes="(max-width: 1024px) 100vw, 32vw"
                       className="object-cover"
                     />
