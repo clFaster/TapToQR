@@ -3,7 +3,6 @@ import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import { BrowserStoreLink } from "./components/browser-store-link";
 import { Icons } from "./components/icons";
-import { ScrollRevealInit } from "./components/scroll-reveal";
 
 const features = [
   {
@@ -58,22 +57,22 @@ const flow = [
 
 const screenshots = [
   {
-    src: "/store/TapToQr-InAction.png",
+    src: "/store/TapToQr-InAction.webp",
     alt: "TapToQR in action",
     title: "Scan a page on desktop, open it on phone",
   },
   {
-    src: "/store/TapToQr-Extension.png",
+    src: "/store/TapToQr-Extension.webp",
     alt: "TapToQR extension",
     title: "Toolbar popup with immediate QR output",
   },
   {
-    src: "/store/TapToQr-Settings.png",
+    src: "/store/TapToQr-Settings.webp",
     alt: "TapToQR settings",
     title: "Settings for preview and export defaults",
   },
   {
-    src: "/store/TapToQr-CustomQr.png",
+    src: "/store/TapToQr-CustomQr.webp",
     alt: "TapToQR custom QR",
     title: "Custom QR builder for structured content",
   },
@@ -82,7 +81,6 @@ const screenshots = [
 export default function Home() {
   return (
     <>
-      <ScrollRevealInit />
       <Navbar />
       <main className="flex min-h-screen flex-col bg-background">
         {/* ── Hero ── */}
@@ -149,9 +147,11 @@ export default function Home() {
                 <div className="mt-6 rounded-2xl border border-border bg-background p-3">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                     <Image
-                      src="/store/TapToQr-InAction.png"
+                      src="/store/TapToQr-InAction.webp"
                       alt="TapToQR in action"
                       fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 32vw"
                       className="object-cover"
                     />
                   </div>
@@ -170,10 +170,7 @@ export default function Home() {
           <div className="aurora-spotlight-right" />
 
           <div className="container relative z-10 mx-auto px-4 md:px-6">
-            <div
-              className="sr-init sr-fade-up mx-auto max-w-3xl text-center"
-              data-sr
-            >
+            <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                 Key Features
               </p>
@@ -187,14 +184,12 @@ export default function Home() {
             </div>
 
             <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {features.map((feature, idx) => {
+              {features.map((feature) => {
                 const Icon = feature.icon;
                 return (
                   <article
                     key={feature.title}
-                    className="sr-init sr-fade-up rounded-2xl border border-border bg-background/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                    data-sr
-                    data-sr-delay={String(100 + idx * 80)}
+                    className="rounded-2xl border border-border bg-background/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   >
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="text-xl" />
@@ -216,7 +211,7 @@ export default function Home() {
         <section className="bg-background py-20 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-              <div className="sr-init sr-slide-right" data-sr>
+              <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                   Workflow
                 </p>
@@ -230,12 +225,10 @@ export default function Home() {
               </div>
 
               <div className="grid gap-5">
-                {flow.map((item, idx) => (
+                {flow.map((item) => (
                   <article
                     key={item.step}
-                    className="sr-init sr-slide-left rounded-2xl border border-border bg-muted/20 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
-                    data-sr
-                    data-sr-delay={String(150 + idx * 120)}
+                    className="rounded-2xl border border-border bg-muted/20 p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-md"
                   >
                     <div className="flex items-center gap-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/40 bg-background text-sm font-bold text-primary">
@@ -263,10 +256,7 @@ export default function Home() {
           className="section-fade-top bg-muted/30 py-20 md:py-24"
         >
           <div className="container mx-auto px-4 md:px-6">
-            <div
-              className="sr-init sr-fade-up mx-auto max-w-3xl text-center"
-              data-sr
-            >
+            <div className="mx-auto max-w-3xl text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">
                 Screenshots
               </p>
@@ -282,17 +272,16 @@ export default function Home() {
               {screenshots.map((shot, idx) => (
                 <article
                   key={shot.src}
-                  className={`sr-init sr-scale-in rounded-3xl border border-border bg-background p-5 shadow-xl transition-all duration-300 hover:shadow-2xl ${
+                  className={`rounded-3xl border border-border bg-background p-5 shadow-xl transition-all duration-300 hover:shadow-2xl ${
                     idx % 2 === 1 ? "md:translate-y-8" : ""
                   }`}
-                  data-sr
-                  data-sr-delay={String(100 + idx * 120)}
                 >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                     <Image
                       src={shot.src}
                       alt={shot.alt}
                       fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                     />
                   </div>

@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -35,34 +32,16 @@ const browserStores: Record<string, BrowserStoreInfo> = {
 export function BrowserStoreLink({
   showAll = false,
   buttonStyle = false,
+  browser = "chrome",
 }: {
   showAll?: boolean;
   buttonStyle?: boolean;
+  browser?: keyof typeof browserStores;
 }) {
-  const [currentBrowser, setCurrentBrowser] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
+  const selectedStore = browserStores[browser] ?? browserStores.chrome;
 
-  useEffect(() => {
-    const userAgent = navigator.userAgent.toLowerCase();
-
-    if (userAgent.indexOf("edg") !== -1) {
-      setCurrentBrowser("edge");
-    } else if (userAgent.indexOf("chrome") !== -1) {
-      setCurrentBrowser("chrome");
-    } else if (userAgent.indexOf("firefox") !== -1) {
-      setCurrentBrowser("firefox");
-    } else {
-      setCurrentBrowser("chrome");
-    }
-
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading && !showAll) {
-    return null;
-  }
-  if (buttonStyle && currentBrowser) {
-    const store = browserStores[currentBrowser];
+  if (buttonStyle) {
+    const store = selectedStore;
     return (
       <Link
         href={store.url}
@@ -91,19 +70,7 @@ export function BrowserStoreLink({
             rel="noopener noreferrer"
             className="transition-transform hover:scale-105 relative p-1"
           >
-            {" "}
-            <div
-              className={
-                currentBrowser === key
-                  ? "relative rounded-md overflow-hidden shadow-lg bg-primary/5 border border-primary/20 p-2"
-                  : "relative rounded-md overflow-hidden p-2"
-              }
-            >
-              {currentBrowser === key && (
-                <div className="absolute -top-1 -right-1 bg-primary text-white text-xs px-2 py-0.5 rounded-bl-md rounded-tr-md shadow-sm">
-                  Your Browser
-                </div>
-              )}
+            <div className="relative rounded-md overflow-hidden p-2">
               <Image
                 src={store.imageSrc}
                 alt={store.imageAlt}
@@ -118,7 +85,9 @@ export function BrowserStoreLink({
       </div>
     );
   }
-  const store = browserStores[currentBrowser];
+
+  const store = selectedStore;
+
   return (
     <div className="flex items-center justify-center mt-8">
       <Link
@@ -127,7 +96,6 @@ export function BrowserStoreLink({
         rel="noopener noreferrer"
         className="transition-transform hover:scale-105 relative p-1"
       >
-        {" "}
         <div className="relative rounded-md overflow-hidden bg-primary/5 border border-primary/20 p-2">
           <Image
             src={store.imageSrc}

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BrowserStoreLink } from "./browser-store-link";
 
 export default function Navbar() {
   return (
@@ -38,11 +37,6 @@ export default function Navbar() {
             GitHub
           </Link>
         </nav>
-        <div className="flex items-center gap-2">
-          <div className="hidden sm:block">
-            <BrowserStoreLink buttonStyle={true} />
-          </div>
-        </div>
       </div>
     </header>
   );

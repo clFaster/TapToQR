@@ -160,35 +160,29 @@
 
 .sr-init {
   opacity: 0;
+  transform: var(--sr-transform, none);
   will-change: opacity, transform;
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: sr-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .sr-fade-up {
-  transform: translateY(32px);
+  --sr-transform: translateY(32px);
 }
 
 .sr-fade-in {
-  transform: none;
+  --sr-transform: none;
 }
 
 .sr-slide-left {
-  transform: translateX(40px);
+  --sr-transform: translateX(40px);
 }
 
 .sr-slide-right {
-  transform: translateX(-40px);
+  --sr-transform: translateX(-40px);
 }
 
 .sr-scale-in {
-  transform: scale(0.92);
-}
-
-.sr-visible {
-  opacity: 1 !important;
-  transform: none !important;
+  --sr-transform: scale(0.92);
 }
 
 /* ── Section transition soft edges ── */
@@ -247,6 +241,18 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes sr-reveal {
+  from {
+    opacity: 0;
+    transform: var(--sr-transform, none);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
