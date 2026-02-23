@@ -34,7 +34,7 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@types/webextension-polyfill": "^0.12.4",
+    "@types/webextension-polyfill": "^0.12.5",
     "@vitejs/plugin-react": "^5.1.4",
     "eslint": "catalog:",
     "eslint-plugin-react-hooks": "^7.0.1",
