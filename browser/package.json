@@ -27,7 +27,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "styled-components": "^6.3.12",
-    "vite-plugin-static-copy": "^4.0.0"
+    "vite-plugin-static-copy": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
