@@ -24,7 +24,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
-    "eslint-config-next": "16.2.2",
+    "eslint-config-next": "16.2.4",
     "postcss": "^8.5.10",
     "prettier": "3.8.3",
     "tailwindcss": "^4.2.2",
