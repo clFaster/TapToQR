@@ -101,6 +101,11 @@ jobs:
         working-directory: ./browser
         run: pnpm run build
 
+      - name: Sanitize build output
+        working-directory: ./browser/build
+        run: |
+          rm -rf public
+
       - name: Create Artifact
         working-directory: ./browser/build
         run: |
