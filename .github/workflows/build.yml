@@ -69,15 +69,18 @@ jobs:
 
       - name: Determine VERSION
         id: determine-version
+        env:
+          INPUT_VERSION: ${{ inputs.VERSION }}
+          REPO_VERSION: ${{ vars.VERSION }}
         run: |         
-          if [ -z "${{ inputs.VERSION }}" ]; then
+          if [ -z "$INPUT_VERSION" ]; then
               echo "Using repository version"
-              echo ${{ vars.VERSION }}
-              echo "VERSION=${{ vars.VERSION }}" >> $GITHUB_OUTPUT
+              echo "$REPO_VERSION"
+              echo "VERSION=$REPO_VERSION" >> $GITHUB_OUTPUT
           else
               echo "Using input version"
-              echo ${{ inputs.VERSION }}
-              echo "VERSION=${{ inputs.VERSION }}" >> $GITHUB_OUTPUT
+              echo "$INPUT_VERSION"
+              echo "VERSION=$INPUT_VERSION" >> $GITHUB_OUTPUT
           fi
 
       - name: Update Version

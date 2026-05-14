@@ -47,7 +47,9 @@ jobs:
   update-version:
     name: "Update TapToQR Version"
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      contents: read
+      actions: write
     outputs:
       new_version: ${{ steps.bump_version.outputs.new_version }}
     steps:
@@ -132,7 +134,8 @@ jobs:
     runs-on: ubuntu-latest
     name: "Create TapToQR Github Release"
     if: ${{ github.event.inputs.publish-github == 'true' }}
-    permissions: write-all
+    permissions:
+      contents: write
     needs:
       [
         build
