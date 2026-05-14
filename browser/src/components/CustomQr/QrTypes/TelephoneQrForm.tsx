@@ -25,15 +25,15 @@ const TelephoneQrForm: React.FC = () => {
       </CompactFormField>
 
       <CompactFormField>
-        <label>Type</label>
-        <RadioGroup>
+        <label id="telephoneTypeLabel">Type</label>
+        <RadioGroup role="radiogroup" aria-labelledby="telephoneTypeLabel">
           <label>
             <input
               type="radio"
               name="telephoneType"
               checked={telephoneData.type === "tel"}
               onChange={() => updateTelephoneData("type", "tel")}
-            />
+            />{" "}
             Call
           </label>
           <label>
@@ -42,7 +42,7 @@ const TelephoneQrForm: React.FC = () => {
               name="telephoneType"
               checked={telephoneData.type === "sms"}
               onChange={() => updateTelephoneData("type", "sms")}
-            />
+            />{" "}
             SMS
           </label>
           <label>
@@ -51,7 +51,7 @@ const TelephoneQrForm: React.FC = () => {
               name="telephoneType"
               checked={telephoneData.type === "facetime"}
               onChange={() => updateTelephoneData("type", "facetime")}
-            />
+            />{" "}
             FaceTime
           </label>
           <label>
@@ -60,7 +60,7 @@ const TelephoneQrForm: React.FC = () => {
               name="telephoneType"
               checked={telephoneData.type === "facetime-audio"}
               onChange={() => updateTelephoneData("type", "facetime-audio")}
-            />
+            />{" "}
             FaceTime Audio
           </label>
         </RadioGroup>

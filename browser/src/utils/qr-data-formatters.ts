@@ -153,7 +153,7 @@ export const formatCalendarData = (data: CalendarData): string => {
   }
 
   if (data.description)
-    icalContent += `DESCRIPTION:${data.description.replace(/\n/g, "\\n")}\n`;
+    icalContent += `DESCRIPTION:${data.description.replace(/\n/g, String.raw`\n`)}\n`;
   if (data.location) icalContent += `LOCATION:${data.location}\n`;
 
   icalContent += "END:VEVENT\n";

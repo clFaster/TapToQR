@@ -21,11 +21,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk, faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 const Options = () => {
-  const [extensionSettings, setExtensionSettings] = useState({
+  const [extensionSettings, setExtensionSettings] = useState<ExtensionSettings>({
     qrCodeSize: 0,
     qrCodeDownloadSize: 0,
     displayLogo: false,
-  } as ExtensionSettings);
+  });
 
   const [toastMessage, setToastMessage] = useState("");
 
@@ -50,7 +50,7 @@ const Options = () => {
   const updateQrCodeSize = (event: React.ChangeEvent<HTMLInputElement>) => {
     setExtensionSettings({
       ...extensionSettings,
-      qrCodeSize: parseInt(event.target.value),
+      qrCodeSize: Number.parseInt(event.target.value),
     });
   };
 
@@ -59,7 +59,7 @@ const Options = () => {
   ) => {
     setExtensionSettings({
       ...extensionSettings,
-      qrCodeDownloadSize: parseInt(event.target.value),
+      qrCodeDownloadSize: Number.parseInt(event.target.value),
     });
   };
 

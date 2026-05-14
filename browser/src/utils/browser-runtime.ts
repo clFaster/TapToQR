@@ -7,10 +7,10 @@ export const openExtensionSettingsPage = async () => {
     .openOptionsPage()
     .then(() => {
       if (
-        window.location.protocol === "moz-extension:" ||
-        window.location.protocol === "chrome-extension:"
+        globalThis.location.protocol === "moz-extension:" ||
+        globalThis.location.protocol === "chrome-extension:"
       ) {
-        window.close();
+        globalThis.close();
       }
     })
     .catch((error) => {

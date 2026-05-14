@@ -1,5 +1,13 @@
 import QRCode from "qrcode";
+import DOMPurify from "dompurify";
 import browser from "webextension-polyfill";
+
+const sanitizeSvg = (svg: string): string => {
+  return DOMPurify.sanitize(svg, {
+    USE_PROFILES: { svg: true, svgFilters: true },
+    ADD_TAGS: ["use"],
+  });
+};
 
 const generateQrCodeSvg = async (content: string, width: number) => {
   try {
@@ -90,7 +98,7 @@ export const generateSvgContent = async (
     svg = await addIconToQrCode(svg, size);
   }
 
-  return svg;
+  return sanitizeSvg(svg);
 };
 
 export const copyQrCodeToClipboard = async (

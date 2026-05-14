@@ -38,8 +38,8 @@ const WifiQrForm: React.FC = () => {
       </CompactFormField>
 
       <CompactFormField>
-        <label>Security Type</label>
-        <RadioGroup>
+        <label id="securityTypeLabel">Security Type</label>
+        <RadioGroup role="radiogroup" aria-labelledby="securityTypeLabel">
           <label>
             <input
               type="radio"
@@ -47,7 +47,7 @@ const WifiQrForm: React.FC = () => {
               value="WPA"
               checked={wifiData.securityType === "WPA"}
               onChange={(e) => updateWifiData("securityType", e.target.value)}
-            />
+            />{" "}
             WPA/WPA2
           </label>
 
@@ -58,7 +58,7 @@ const WifiQrForm: React.FC = () => {
               value="WEP"
               checked={wifiData.securityType === "WEP"}
               onChange={(e) => updateWifiData("securityType", e.target.value)}
-            />
+            />{" "}
             WEP
           </label>
 
@@ -69,7 +69,7 @@ const WifiQrForm: React.FC = () => {
               value="nopass"
               checked={wifiData.securityType === "nopass"}
               onChange={(e) => updateWifiData("securityType", e.target.value)}
-            />
+            />{" "}
             No Password
           </label>
         </RadioGroup>

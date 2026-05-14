@@ -11,7 +11,7 @@ catalog:
   '@fortawesome/react-fontawesome': ^3.3.1
   '@types/react': ^19.2.14
   '@types/react-dom': ^19.2.3
-  eslint: ^9.39.1
+  eslint: ^9.39.4
   react: ^19.2.6
   react-dom: ^19.2.6
   typescript: ^6.0.3

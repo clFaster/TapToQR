@@ -2,6 +2,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
+  useMemo,
   ReactNode,
 } from "react";
 import { QrContext, QrContextType } from "./QrContextDefinition";
@@ -129,7 +130,7 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     calendarData,
   ]);
 
-  const copyToClipboard = async () => {
+  const copyToClipboard = useCallback(async () => {
     const extensionSettings = await loadExtensionSettings();
     const qrContent = getFormattedContent();
     const svg = await generateSvgContent(
@@ -138,9 +139,9 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       extensionSettings.displayLogo,
     );
     await copyQrCodeToClipboard(svg, extensionSettings.qrCodeDownloadSize);
-  };
+  }, [getFormattedContent]);
 
-  const downloadQrCode = async () => {
+  const downloadQrCode = useCallback(async () => {
     const extensionSettings = await loadExtensionSettings();
     const qrContent = getFormattedContent();
     const svg = await generateSvgContent(
@@ -149,11 +150,11 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       extensionSettings.displayLogo,
     );
     await downloadQrCodeAsPng(svg, extensionSettings.qrCodeDownloadSize);
-  };
+  }, [getFormattedContent]);
 
-  const openExtensionSettings = async () => {
+  const openExtensionSettings = useCallback(async () => {
     await openExtensionSettingsPage();
-  };
+  }, []);
 
   const updateWifiData = (field: keyof WifiData, value: string) => {
     setWifiData((prev) => ({
@@ -230,7 +231,7 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     };
   }, [getFormattedContent]);
 
-  const value: QrContextType = {
+  const value: QrContextType = useMemo(() => ({
     // State
     dataType,
     textContent,
@@ -257,7 +258,21 @@ export const QrProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     downloadQrCode,
     openExtensionSettings,
     getFormattedContent,
-  };
+  }), [
+    dataType,
+    textContent,
+    wifiData,
+    contactData,
+    emailData,
+    telephoneData,
+    mapsData,
+    calendarData,
+    qrCodeSvg,
+    copyToClipboard,
+    downloadQrCode,
+    openExtensionSettings,
+    getFormattedContent,
+  ]);
 
   return <QrContext.Provider value={value}>{children}</QrContext.Provider>;
 };

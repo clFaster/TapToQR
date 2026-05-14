@@ -42,6 +42,24 @@ const MapsQrForm: React.FC = () => {
   const isQueryDisabled = !!(mapsData.latitude || mapsData.longitude);
   const areCoordinatesDisabled = !!mapsData.query;
 
+  const getQueryFieldStyle = () => {
+    if (isQueryDisabled) return disabledFieldStyle;
+    if (mapsData.query) return activeFieldStyle;
+    return {};
+  };
+
+  const getLatitudeFieldStyle = () => {
+    if (areCoordinatesDisabled) return disabledFieldStyle;
+    if (mapsData.latitude) return activeFieldStyle;
+    return {};
+  };
+
+  const getLongitudeFieldStyle = () => {
+    if (areCoordinatesDisabled) return disabledFieldStyle;
+    if (mapsData.longitude) return activeFieldStyle;
+    return {};
+  };
+
   return (
     <>
       <CompactFormField>
@@ -59,13 +77,7 @@ const MapsQrForm: React.FC = () => {
             onChange={(e) => handleQueryChange(e.target.value)}
             placeholder="Enter address, city, or place name"
             disabled={isQueryDisabled}
-            style={
-              isQueryDisabled
-                ? disabledFieldStyle
-                : !isQueryDisabled && mapsData.query
-                  ? activeFieldStyle
-                  : {}
-            }
+            style={getQueryFieldStyle()}
           />
         </InputContainer>
         <small>OR enter coordinates directly:</small>
@@ -91,13 +103,7 @@ const MapsQrForm: React.FC = () => {
             onChange={(e) => handleCoordinateChange("latitude", e.target.value)}
             placeholder="e.g., 37.7749"
             disabled={areCoordinatesDisabled}
-            style={
-              areCoordinatesDisabled
-                ? disabledFieldStyle
-                : mapsData.latitude
-                  ? activeFieldStyle
-                  : {}
-            }
+            style={getLatitudeFieldStyle()}
           />
         </InputContainer>
       </CompactFormField>
@@ -119,13 +125,7 @@ const MapsQrForm: React.FC = () => {
             }
             placeholder="e.g., -122.4194"
             disabled={areCoordinatesDisabled}
-            style={
-              areCoordinatesDisabled
-                ? disabledFieldStyle
-                : mapsData.longitude
-                  ? activeFieldStyle
-                  : {}
-            }
+            style={getLongitudeFieldStyle()}
           />
         </InputContainer>
       </CompactFormField>

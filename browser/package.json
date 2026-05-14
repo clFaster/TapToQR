@@ -22,6 +22,7 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "catalog:",
     "@fortawesome/react-fontawesome": "catalog:",
+    "dompurify": "^3.4.3",
     "jimp": "^1.6.1",
     "qrcode": "^1.5.4",
     "react": "catalog:",
@@ -30,7 +31,7 @@
     "vite-plugin-static-copy": "^4.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
+    "@eslint/js": "^9.39.4",
     "@types/qrcode": "^1.5.6",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

@@ -25,13 +25,13 @@ export const loadExtensionSettings = async () => {
 
   r.qrCodeSize = r.qrCodeSize || DEFAULT_SVG_SIZE;
   r.qrCodeDownloadSize = r.qrCodeDownloadSize || DEFAULT_PNG_SIZE;
-  r.displayLogo = r.displayLogo !== undefined ? r.displayLogo : DEFAULT_LOGO;
+  r.displayLogo = r.displayLogo ?? DEFAULT_LOGO;
   return r as ExtensionSettings;
 };
 
 export const saveExtensionSettings = async (settings: ExtensionSettings) => {
   await browser.storage.local.set(
-    settings as InternalExtensionSettings as Record<string, unknown>,
+    settings as unknown as Record<string, unknown>,
   );
   return loadExtensionSettings();
 };
