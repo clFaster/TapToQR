@@ -13,21 +13,21 @@
     "@fortawesome/fontawesome-svg-core": "catalog:",
     "@fortawesome/free-solid-svg-icons": "catalog:",
     "@fortawesome/react-fontawesome": "catalog:",
-    "next": "16.2.4",
+    "next": "16.2.6",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
-    "@tailwindcss/postcss": "^4.2.2",
-    "@types/node": "^25.6.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^25.8.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "eslint": "catalog:",
-    "eslint-config-next": "16.2.4",
-    "postcss": "^8.5.10",
+    "eslint-config-next": "16.2.6",
+    "postcss": "^8.5.14",
     "prettier": "3.8.3",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "typescript": "catalog:"
   }
 }
