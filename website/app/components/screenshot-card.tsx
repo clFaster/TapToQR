@@ -15,7 +15,7 @@ export function ScreenshotCard({
   imageSrc,
   imageAlt,
   reverse = false,
-}: ScreenshotCardProps) {
+}: Readonly<ScreenshotCardProps>) {
   return (
     <div
       className={`flex flex-col ${

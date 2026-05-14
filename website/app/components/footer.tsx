@@ -32,8 +32,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 GitHub repository
-              </a>
-              .
+              </a>{"."}
             </p>
           </div>
           <div className="space-y-3">

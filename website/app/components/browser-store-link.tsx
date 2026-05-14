@@ -33,11 +33,11 @@ export function BrowserStoreLink({
   showAll = false,
   buttonStyle = false,
   browser = "chrome",
-}: {
+}: Readonly<{
   showAll?: boolean;
   buttonStyle?: boolean;
   browser?: keyof typeof browserStores;
-}) {
+}>) {
   const selectedStore = browserStores[browser] ?? browserStores.chrome;
 
   if (buttonStyle) {
@@ -50,7 +50,7 @@ export function BrowserStoreLink({
         className="group flex items-center justify-center px-4 py-2 text-sm font-bold bg-primary hover:bg-primary/90 text-white rounded-md transition-colors relative"
       >
         <span className="inline-flex items-center">
-          Get Extension
+          Get Extension{" "}
           <span className="ml-2 text-xs bg-white px-1.5 py-0.5 rounded text-primary transition-colors">
             {store.name}
           </span>
