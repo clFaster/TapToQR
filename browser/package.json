@@ -36,7 +36,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@types/webextension-polyfill": "^0.12.5",
-    "@vitejs/plugin-react": "^6.0.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "concurrently": "^9.2.1",
     "eslint": "catalog:",
     "eslint-plugin-react-hooks": "^7.1.1",
