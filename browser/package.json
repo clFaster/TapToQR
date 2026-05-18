@@ -22,7 +22,7 @@
     "@fortawesome/free-regular-svg-icons": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "catalog:",
     "@fortawesome/react-fontawesome": "catalog:",
-    "dompurify": "^3.4.3",
+    "dompurify": "^3.4.5",
     "jimp": "^1.6.1",
     "qrcode": "^1.5.4",
     "react": "catalog:",
