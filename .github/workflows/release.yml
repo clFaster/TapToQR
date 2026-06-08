@@ -243,7 +243,7 @@ jobs:
           # zip again
           zip -r TapToQR-${{needs.build.outputs.VERSION}}.zip ./*
 
-      - uses: wdzeng/edge-addon@d4db1eea77297a24d799394dec87e8912e0902f9
+      - uses: wdzeng/edge-addon@9881f57720358040d079eaa06a4596dc9c273eb6
         with:
           product-id: "1cc708c2-05e8-4339-9fdb-ddca04acf678"
           zip-path: TapToQR-addon/TapToQR-${{needs.build.outputs.VERSION}}.zip
