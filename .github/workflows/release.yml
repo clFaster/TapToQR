@@ -54,7 +54,7 @@ jobs:
       new_version: ${{ steps.bump_version.outputs.new_version }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Ensure branch is main
         if: github.ref != 'refs/heads/main'
@@ -142,7 +142,7 @@ jobs:
       ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Artifact
         uses: actions/download-artifact@v8
@@ -167,7 +167,7 @@ jobs:
       ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Artifact
         uses: actions/download-artifact@v8
@@ -201,7 +201,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Artifact
         uses: actions/download-artifact@v8
@@ -227,7 +227,7 @@ jobs:
       ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Download Artifact
         uses: actions/download-artifact@v8
